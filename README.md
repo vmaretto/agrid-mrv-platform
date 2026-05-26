@@ -1,30 +1,57 @@
-# A-Grid MRV Frontend Mockup
+# A-Grid MRV Platform
 
-## Cosa contiene
+Mockup frontend della piattaforma **A-Grid Carbon Farming MRV**, integrato con elementi della precedente `carbon-credit-dashboard`.
 
-Mockup HTML statico e interattivo della prima dashboard frontend per la piattaforma **A-Grid Carbon Farming MRV**.
+## Posizionamento
+
+**MRV first, blockchain from day one.**
+
+La piattaforma non promette subito emissione/vendita di crediti. La componente blockchain entra già dal primo step come layer di fiducia per:
+
+- identificativo progetto / Project Anchor;
+- hash delle evidenze;
+- timestamp;
+- audit trail;
+- integrazione pOsti;
+- readiness verso certificazione futura.
 
 ## Schermate incluse
 
 - Dashboard MRV
+- Wizard nuovo progetto MRV
+- Step 1 con blockchain / pOsti anchor
 - Progetti
 - Evidenze
 - Standard readiness
-- Integrazione pOsti
+- Blockchain / pOsti layer
+- MRV Readiness Report
 
-## Principio di design
+## Cosa è stato integrato dalla vecchia carbon-credit-dashboard
 
-- MRV first, credits later
-- Utenti interni A-Grid
-- pOsti come layer dati/evidenze/tracciabilità
-- Standard-ready, non standard-locked
+- Logica wizard multi-step
+- Fasi carbon farming / baseline / monitoring / report
+- Concetto di certificato, trasformato in **MRV Readiness Report**
+- Componente blockchain mantenuta ma riposizionata: da token/marketplace a tracciabilità evidenze e audit trail
 
-## Come aprirlo su Mac
+## Deploy Vercel
 
-Doppio click su:
+Il progetto è pronto per Vercel.
 
-`/Users/virgiliomaretto/Desktop/A-Grid_MRV_Mockup/index.html`
+Impostazioni:
 
-Oppure da terminale:
+- Framework: Vite
+- Build command: `npm run build`
+- Output directory: `dist`
 
-`open /Users/virgiliomaretto/Desktop/A-Grid_MRV_Mockup/index.html`
+## Locale
+
+```bash
+npm install
+npm run dev
+```
+
+Oppure apri direttamente:
+
+```bash
+open /Users/virgiliomaretto/Desktop/A-Grid_MRV_Mockup/index.html
+```

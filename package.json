@@ -1,0 +1,20 @@
+{
+  "name": "agrid-mrv-platform",
+  "version": "0.1.0",
+  "private": false,
+  "description": "A-Grid Carbon Farming MRV frontend mockup",
+  "scripts": {
+    "start": "vite --host 0.0.0.0",
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --host 0.0.0.0"
+  },
+  "dependencies": {
+    "@vitejs/plugin-react": "latest",
+    "vite": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "lucide-react": "latest"
+  },
+  "devDependencies": {}
+}

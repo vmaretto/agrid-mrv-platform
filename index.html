@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A-Grid MRV Platform — Frontend Mockup</title>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#f4f1e8;--panel:#fffdf8;--ink:#17241d;--muted:#647267;--line:#dfd8c8;
+      --forest:#173d2b;--moss:#7fa35a;--mint:#d9ead0;--sand:#efe5cf;--amber:#d78f2f;
+      --red:#b85b4b;--blue:#2f6f7e;--shadow:0 18px 50px rgba(23,61,43,.12);
+    }
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.45}
+    .app{display:grid;grid-template-columns:280px 1fr;min-height:100vh;background:linear-gradient(90deg,var(--forest) 0 280px,var(--bg) 280px 100%)}
+    aside{background:var(--forest);color:#f8f5eb;padding:26px 22px;position:sticky;top:0;height:100vh}
+    .brand{display:flex;gap:12px;align-items:center;margin-bottom:34px}
+    .logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,#b6d37c,#f2c063);display:grid;place-items:center;color:var(--forest);font-weight:900;font-size:22px}
+    .brand h1{font-size:21px;letter-spacing:.03em}.brand p{font-size:12px;color:#c9d8c6;margin-top:2px}
+    .nav-label{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:#adc3aa;margin:22px 0 10px}
+    .nav button{width:100%;border:0;background:transparent;color:#e8efe4;text-align:left;padding:11px 12px;border-radius:12px;margin:3px 0;cursor:pointer;font-weight:650;display:flex;gap:10px;align-items:center}
+    .nav button:hover,.nav button.active{background:rgba(255,255,255,.12)}
+    .nav .dot{width:8px;height:8px;border-radius:50%;background:#93c572}.nav .muted-dot{background:#6d866e}
+    .side-card{margin-top:28px;background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:16px}
+    .side-card b{font-size:14px}.side-card p{font-size:12px;color:#d3dfcf;margin-top:6px}.side-card .mini{margin-top:12px;height:8px;background:rgba(255,255,255,.13);border-radius:99px;overflow:hidden}.side-card .mini span{display:block;height:100%;width:68%;background:#b6d37c}
+    main{padding:28px 34px 42px;overflow:auto}
+    .topbar{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px;gap:22px}
+    .eyebrow{font-size:12px;color:var(--blue);font-weight:800;text-transform:uppercase;letter-spacing:.12em}.title{font-size:34px;line-height:1.05;margin-top:6px}.subtitle{color:var(--muted);margin-top:8px;max-width:780px}
+    .actions{display:flex;gap:10px;align-items:center;white-space:nowrap}.btn{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:11px 15px;font-weight:800;cursor:pointer;color:var(--ink);box-shadow:0 2px 0 rgba(0,0,0,.03)}.btn.primary{background:var(--forest);color:#fff;border-color:var(--forest)}.btn.amber{background:#ffe5b7;border-color:#e9c783;color:#6d4310}.btn:hover{transform:translateY(-1px)}
+    .grid{display:grid;gap:18px}.kpis{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:20px}.card{background:var(--panel);border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:var(--shadow)}.kpi-label{font-size:12px;color:var(--muted);font-weight:750;text-transform:uppercase;letter-spacing:.08em}.kpi-value{font-size:31px;font-weight:900;margin-top:8px}.kpi-foot{font-size:12px;color:var(--muted);margin-top:6px}.status-pill{display:inline-flex;align-items:center;gap:7px;padding:6px 10px;border-radius:99px;background:var(--mint);font-size:12px;font-weight:800;color:#244c30}.status-pill:before{content:"";width:7px;height:7px;background:#5c9b3e;border-radius:50%}
+    .main-layout{display:grid;grid-template-columns:1.25fr .75fr;gap:18px}.section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}.section-title h2{font-size:20px}.section-title span{font-size:12px;color:var(--muted);font-weight:750}
+    .pipeline{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.phase{background:#f8f2e5;border:1px solid var(--line);border-radius:16px;padding:13px;min-height:132px}.phase.done{background:#edf5e7}.phase.active{background:#fff2d9;border-color:#e5b35d}.phase h3{font-size:13px;margin-bottom:9px}.phase p{font-size:12px;color:var(--muted)}.phase .num{width:26px;height:26px;border-radius:9px;background:#fff;display:grid;place-items:center;font-weight:900;color:var(--forest);margin-bottom:10px}
+    .evidence-list{display:grid;gap:10px}.evidence{display:grid;grid-template-columns:34px 1fr auto;gap:12px;align-items:center;border:1px solid var(--line);border-radius:15px;padding:12px;background:#fffdf8}.icon{width:34px;height:34px;border-radius:12px;display:grid;place-items:center;background:var(--mint)}.evidence b{font-size:14px}.evidence p{font-size:12px;color:var(--muted)}.tag{font-size:11px;font-weight:900;padding:5px 8px;border-radius:99px}.tag.ok{background:#dbedd0;color:#315d2e}.tag.warn{background:#ffe3b0;color:#70460d}.tag.bad{background:#f3d1ca;color:#823528}.tag.info{background:#dbe9ed;color:#23525c}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}.parcel{display:flex;gap:14px;align-items:center;border-bottom:1px solid var(--line);padding:13px 0}.parcel:last-child{border-bottom:0}.map{height:245px;border-radius:18px;background:linear-gradient(135deg,#cfe0b9,#9bbf7d);position:relative;overflow:hidden;border:1px solid #bdd0ad}.plot{position:absolute;border:2px solid rgba(23,61,43,.75);background:rgba(255,255,255,.18);border-radius:14px;display:grid;place-items:center;font-size:12px;font-weight:900;color:#173d2b}.plot.one{left:24px;top:35px;width:140px;height:84px}.plot.two{left:172px;top:54px;width:170px;height:122px}.plot.three{left:70px;top:138px;width:130px;height:70px}.legend{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}.legend span{font-size:12px;color:var(--muted)}
+    .readiness{display:grid;gap:12px}.bar-row{display:grid;grid-template-columns:145px 1fr 42px;gap:10px;align-items:center;font-size:13px}.bar{height:10px;border-radius:99px;background:#ece3d2;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--moss),var(--amber));border-radius:99px}.toast{position:fixed;right:24px;bottom:24px;background:var(--forest);color:#fff;padding:14px 18px;border-radius:16px;box-shadow:var(--shadow);display:none;font-weight:750}.toast.show{display:block;animation:pop .22s ease-out}@keyframes pop{from{transform:translateY(8px);opacity:0}to{transform:translateY(0);opacity:1}}
+    .screen{display:none}.screen.active{display:block}.table{width:100%;border-collapse:separate;border-spacing:0 9px}.table th{text-align:left;font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}.table td{background:#fffdf8;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:13px;font-size:14px}.table td:first-child{border-left:1px solid var(--line);border-radius:14px 0 0 14px;font-weight:850}.table td:last-child{border-right:1px solid var(--line);border-radius:0 14px 14px 0}.empty{border:2px dashed #d4c7ae;border-radius:22px;padding:28px;text-align:center;color:var(--muted);background:rgba(255,255,255,.45)}
+    @media(max-width:1050px){.app{grid-template-columns:1fr}aside{position:relative;height:auto}.kpis,.main-layout,.split{grid-template-columns:1fr}.pipeline{grid-template-columns:1fr 1fr}.actions{flex-wrap:wrap}.topbar{flex-direction:column}.title{font-size:28px}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside>
+      <div class="brand"><div class="logo">A</div><div><h1>A-GRID</h1><p>Carbon Farming MRV</p></div></div>
+      <div class="nav">
+        <div class="nav-label">Workspace</div>
+        <button class="active" data-screen="dashboard"><span class="dot"></span>Dashboard MRV</button>
+        <button data-screen="projects"><span class="muted-dot dot"></span>Progetti</button>
+        <button data-screen="evidence"><span class="muted-dot dot"></span>Evidenze</button>
+        <button data-screen="readiness"><span class="muted-dot dot"></span>Standard readiness</button>
+        <div class="nav-label">Integration</div>
+        <button data-screen="posti"><span class="muted-dot dot"></span>pOsti layer</button>
+      </div>
+      <div class="side-card">
+        <b>MVP scope</b>
+        <p>MRV first: dati, evidenze, baseline, audit trail. Crediti e tokenizzazione dopo.</p>
+        <div class="mini"><span></span></div>
+        <p>Completamento dati demo: 68%</p>
+      </div>
+    </aside>
+    <main>
+      <section id="dashboard" class="screen active">
+        <div class="topbar"><div><div class="eyebrow">Internal MRV Command Center</div><h1 class="title">Da dati di campo a report verificabili</h1><p class="subtitle">Mockup frontend per A-Grid: gestione progetti carbon farming, evidenze, baseline, readiness standard e integrazione progressiva con pOsti.</p></div><div class="actions"><button class="btn">Esporta report</button><button class="btn primary" onclick="toast('Nuovo progetto MRV creato in bozza')">+ Nuovo progetto</button></div></div>
+        <div class="grid kpis">
+          <div class="card"><div class="kpi-label">Progetti MRV</div><div class="kpi-value">3</div><div class="kpi-foot">1 attivo · 2 draft</div></div>
+          <div class="card"><div class="kpi-label">Superficie gestita</div><div class="kpi-value">1.240 ha</div><div class="kpi-foot">UAE demo + EU pilot placeholder</div></div>
+          <div class="card"><div class="kpi-label">Evidenze validate</div><div class="kpi-value">42/61</div><div class="kpi-foot">19 da verificare</div></div>
+          <div class="card"><div class="kpi-label">Readiness</div><div class="kpi-value">68%</div><div class="kpi-foot"><span class="status-pill">Audit-ready preliminare</span></div></div>
+        </div>
+        <div class="main-layout">
+          <div class="card"><div class="section-title"><h2>Workflow MRV</h2><span>Sense → Verify → Certify-ready</span></div><div class="pipeline">
+            <div class="phase done"><div class="num">1</div><h3>Setup progetto</h3><p>Azienda, appezzamenti, ruoli interni A-Grid.</p></div>
+            <div class="phase done"><div class="num">2</div><h3>Data collection</h3><p>Pratiche, documenti, foto, analisi suolo.</p></div>
+            <div class="phase active"><div class="num">3</div><h3>Baseline</h3><p>Stima iniziale e gap dati da chiudere.</p></div>
+            <div class="phase"><div class="num">4</div><h3>Monitoring</h3><p>Evidenze nel tempo e dati sensori.</p></div>
+            <div class="phase"><div class="num">5</div><h3>Report MRV</h3><p>Export PDF/Excel/JSON per revisione.</p></div>
+          </div></div>
+          <div class="card"><div class="section-title"><h2>Ultime evidenze</h2><span>pOsti trace ID ready</span></div><div class="evidence-list">
+            <div class="evidence"><div class="icon">📷</div><div><b>Foto cover crop — Plot A12</b><p>Geo-tag · 25 Mag 2026 · pOsti ID: EV-1842</p></div><span class="tag ok">validata</span></div>
+            <div class="evidence"><div class="icon">🧪</div><div><b>Analisi suolo SOC 0–30 cm</b><p>Laboratorio · profondità mancante</p></div><span class="tag warn">integrare</span></div>
+            <div class="evidence"><div class="icon">📄</div><div><b>Registro minima lavorazione</b><p>Documento caricato dal tecnico</p></div><span class="tag info">review</span></div>
+          </div></div>
+        </div>
+        <div class="split">
+          <div class="card"><div class="section-title"><h2>Appezzamenti demo</h2><span>micro-grid placeholder</span></div><div class="map"><div class="plot one">Plot A12<br>34 ha</div><div class="plot two">Plot B07<br>91 ha</div><div class="plot three">Plot C03<br>18 ha</div></div><div class="legend"><span>● verde: dati completi</span><span>● ambra: baseline incompleta</span><span>● rosso: evidenze mancanti</span></div></div>
+          <div class="card"><div class="section-title"><h2>Readiness score</h2><span>standard generico</span></div><div class="readiness">
+            <div class="bar-row"><span>Anagrafica</span><div class="bar"><i style="width:92%"></i></div><b>92%</b></div>
+            <div class="bar-row"><span>Baseline</span><div class="bar"><i style="width:55%"></i></div><b>55%</b></div>
+            <div class="bar-row"><span>Evidenze</span><div class="bar"><i style="width:69%"></i></div><b>69%</b></div>
+            <div class="bar-row"><span>Analisi suolo</span><div class="bar"><i style="width:41%"></i></div><b>41%</b></div>
+            <div class="bar-row"><span>Audit trail</span><div class="bar"><i style="width:81%"></i></div><b>81%</b></div>
+          </div><button class="btn amber" style="margin-top:18px" onclick="toast('Gap analysis aperta: mancano profondità campionamento e confini parcelle')">Vedi gap analysis</button></div>
+        </div>
+      </section>
+      <section id="projects" class="screen"><div class="topbar"><div><div class="eyebrow">Projects</div><h1 class="title">Progetti MRV interni</h1><p class="subtitle">Vista operativa per il team A-Grid: stato, superficie, readiness e responsabile.</p></div><button class="btn primary" onclick="toast('Apertura wizard nuovo progetto')">+ Crea progetto</button></div><div class="card"><table class="table"><thead><tr><th>Progetto</th><th>Area</th><th>Superficie</th><th>Stato</th><th>Owner</th><th>Readiness</th></tr></thead><tbody><tr><td>UAE Date Farms Demo</td><td>GCC / UAE</td><td>820 ha</td><td><span class="tag warn">Baseline</span></td><td>MRV Manager</td><td>68%</td></tr><tr><td>EU CRCF Placeholder</td><td>Italy / Spain</td><td>340 ha</td><td><span class="tag info">Draft</span></td><td>Scientific reviewer</td><td>31%</td></tr><tr><td>Agroforestry Pilot</td><td>Romania</td><td>80 ha</td><td><span class="tag ok">Monitoring</span></td><td>A-Grid team</td><td>74%</td></tr></tbody></table></div></section>
+      <section id="evidence" class="screen"><div class="topbar"><div><div class="eyebrow">Evidence hub</div><h1 class="title">Evidenze e validazione</h1><p class="subtitle">Ogni evidenza ha stato, reviewer e futuro collegamento a pOsti trace ID / notarizzazione.</p></div><button class="btn primary" onclick="toast('Upload evidenza: foto, documento, analisi suolo o sensore')">+ Upload evidenza</button></div><div class="card"><div class="evidence-list"><div class="evidence"><div class="icon">🛰️</div><div><b>NDVI support layer</b><p>Dato satellite complementare, non fonte primaria MRV.</p></div><span class="tag info">supporto</span></div><div class="evidence"><div class="icon">🌱</div><div><b>Semina cover crop</b><p>Foto + fattura sementi + registro intervento.</p></div><span class="tag ok">validata</span></div><div class="evidence"><div class="icon">🔌</div><div><b>Sensor feed Nature 4.0</b><p>Endpoint non ancora collegato — predisposizione MVP.</p></div><span class="tag warn">pending</span></div></div></div></section>
+      <section id="readiness" class="screen"><div class="topbar"><div><div class="eyebrow">Standard-ready layer</div><h1 class="title">Non bloccato su uno standard</h1><p class="subtitle">CRCF, Verra, Gold Standard e NRCC diventano template futuri. L’MVP raccoglie dati strutturati e auditabili.</p></div></div><div class="card"><div class="empty"><h2>Checklist standard generica</h2><p style="margin-top:8px">Baseline, addizionalità, permanenza, leakage, evidenze, audit trail, incertezza. Qui potremo aggiungere template CRCF / Verra / NRCC.</p></div></div></section>
+      <section id="posti" class="screen"><div class="topbar"><div><div class="eyebrow">pOsti integration</div><h1 class="title">pOsti come layer dati ed evidenze</h1><p class="subtitle">A-Grid MRV gestisce carbon farming; pOsti supporta acquisizione, tracciabilità, attori, documenti, audit trail e notarizzazione.</p></div><button class="btn primary" onclick="toast('API pOsti mock collegata: /evidence /actors /trace-events')">Test API mock</button></div><div class="split"><div class="card"><h2>A-Grid MRV</h2><p class="subtitle">Progetti, appezzamenti, baseline, pratiche, readiness, report MRV.</p></div><div class="card"><h2>pOsti Platform</h2><p class="subtitle">Attori, evidenze, timestamp, tracciabilità documentale, blockchain notarization.</p></div></div></section>
+    </main>
+  </div>
+  <div class="toast" id="toast"></div>
+  <script>
+    document.querySelectorAll('.nav button').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.nav button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(btn.dataset.screen).classList.add('active')}));
+    function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2600)}
+  </script>
+</body>
+</html>

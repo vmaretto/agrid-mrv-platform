@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A-Grid MRV — Stakeholder Portfolio</title>
+  <link rel="stylesheet" href="/assets/mrv.css">
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><div class="logo">AG</div><div><h2>A-GRID</h2><p>Stakeholder Portal</p></div></div>
+    <div class="nav-title">Read-only</div>
+    <nav class="nav" id="nav">
+      <button class="active" data-tab="portfolio">Portfolio</button>
+      <button data-tab="projects">Progetti</button>
+      <button data-tab="impact">Impatto</button>
+      <button data-tab="reports">Report</button>
+    </nav>
+    <div class="side-card"><b>Accesso limitato</b><p>Solo KPI aggregati, timeline MRV, evidenze validate e report approvati. Nessun dato raw, documento interno o sensore live.</p></div>
+    <div class="side-card"><b>Portfolio</b><p>Italia, Spagna, UAE e Kenya in pipeline. Valori e crediti sono mock demo.</p></div>
+  </aside>
+  <main class="content">
+    <div class="top">
+      <div><div class="eyebrow">Vista Stakeholder</div><h1>Portfolio MRV read-only per investitori e partner</h1><p>KPI aggregati, progetti, impatto e report validati, con tracciabilità blockchain delle evidenze chiave.</p></div>
+      <div class="actions"><a class="btn secondary" href="/">Cambia ruolo</a><button class="btn" onclick="go('reports')">Apri report</button></div>
+    </div>
+
+    <section id="portfolio" class="section active">
+      <div class="grid kpis">
+        <div class="card kpi"><div class="label">Totale progetti</div><div class="value">6</div><div class="sub">4 attivi · 2 pipeline</div></div>
+        <div class="card kpi"><div class="label">Superficie gestita</div><div class="value">1.592 ha</div><div class="sub">agricoltura e agroforestazione</div></div>
+        <div class="card kpi"><div class="label">Crediti generati</div><div class="value">0</div><div class="sub">4.820 tCO2e stimati</div></div>
+        <div class="card kpi"><div class="label">Valore stimato</div><div class="value">€241k</div><div class="sub">portfolio potenziale mock</div></div>
+      </div>
+      <div class="grid two">
+        <div class="card"><h2>Distribuzione colture</h2><p class="lead">Ripartizione portfolio per tipologia agricola.</p><div class="chart-box"><canvas id="cropChart"></canvas></div></div>
+        <div class="card"><h2>Crediti stimati per progetto</h2><p class="lead">Stime preliminari, non crediti emessi.</p><div class="chart-box"><canvas id="creditChart"></canvas></div></div>
+      </div>
+      <div class="card" style="margin-top:16px"><h2>Mappa portfolio</h2><p class="lead">Pin demo sui progetti e pipeline geografiche.</p><div class="portfolio-map"><span class="pin it" title="Italia"></span><span class="pin es" title="Spagna"></span><span class="pin ae" title="UAE"></span><span class="pin ke" title="Kenya"></span></div></div>
+    </section>
+
+    <section id="projects" class="section">
+      <h2>Progetti</h2><p class="lead">Overview sintetica con accesso al dettaglio read-only.</p>
+      <div class="table"><div class="row header"><div>Progetto</div><div>Stato</div><div>Superficie</div><div>Crediti stimati</div><div>Readiness</div></div>
+        <div class="row"><div><button class="btn secondary" onclick="showProject('trebotti')">Vigna Trebotti</button></div><div><span class="pill amber">baseline</span></div><div>12 ha</div><div>38 tCO2e</div><div>42%</div></div>
+        <div class="row"><div><button class="btn secondary" onclick="showProject('uae')">UAE Date Farms Demo</button></div><div><span class="pill">monitoring</span></div><div>820 ha</div><div>3.120 tCO2e</div><div>68%</div></div>
+        <div class="row"><div><button class="btn secondary" onclick="showProject('eu')">EU CRCF Placeholder</button></div><div><span class="pill amber">draft</span></div><div>340 ha</div><div>940 tCO2e</div><div>31%</div></div>
+        <div class="row"><div><button class="btn secondary" onclick="showProject('agro')">Agroforestry Pilot</button></div><div><span class="pill red">gap dati</span></div><div>80 ha</div><div>260 tCO2e</div><div>24%</div></div>
+      </div>
+      <div id="projectDetail" class="card" style="margin-top:16px"></div>
+    </section>
+
+    <section id="impact" class="section">
+      <div class="grid three">
+        <div class="card"><h2>Climate impact</h2><p class="lead">4.820 tCO2e stimati con incertezza alta finché le baseline non sono complete.</p><span class="pill amber">pre-certificazione</span></div>
+        <div class="card"><h2>Soil health</h2><p class="lead">SOC, copertura vegetale e riduzione lavorazioni tracciate nei progetti attivi.</p><span class="pill blue">MRV evidence</span></div>
+        <div class="card"><h2>Readiness</h2><p class="lead">2 progetti sopra 60%, nessuno ancora pronto per emissione credito.</p><span class="pill red">no token emessi</span></div>
+      </div>
+      <div class="card" style="margin-top:16px"><h2>Timeline portfolio</h2><div class="timeline"><div class="phase"><div class="phase-head"><h3>Q2 2026</h3><span class="pill">anchor e baseline</span></div><p>6 Project Anchor creati, 84 evidenze validate.</p></div><div class="phase"><div class="phase-head"><h3>Q3 2026</h3><span class="pill amber">monitoring</span></div><p>Completamento SOC e sensori per i progetti prioritari.</p></div><div class="phase"><div class="phase-head"><h3>Q4 2026</h3><span class="pill blue">certifier package</span></div><p>Primi audit package per revisione esterna.</p></div></div></div>
+    </section>
+
+    <section id="reports" class="section">
+      <h2>Report</h2><p class="lead">Documenti stakeholder approvati, senza allegati raw o dati sensore live.</p>
+      <div class="grid three">
+        <div class="card"><h2>Portfolio Snapshot</h2><p class="lead">KPI aggregati, mappa, stime crediti e readiness.</p><span class="pill">disponibile</span></div>
+        <div class="card"><h2>MRV Readiness Summary</h2><p class="lead">Sintesi per progetto con evidenze validate e hash.</p><span class="pill">disponibile</span></div>
+        <div class="card"><h2>Audit Log Extract</h2><p class="lead">Eventi blockchain/pOsti esportabili per due diligence.</p><span class="pill blue">read-only</span></div>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const tabs=[...document.querySelectorAll('[data-tab]')], sections=[...document.querySelectorAll('.section')];
+function go(id){sections.forEach(s=>s.classList.toggle('active',s.id===id));tabs.forEach(b=>b.classList.toggle('active',b.dataset.tab===id));location.hash=id;window.scrollTo({top:0,behavior:'smooth'});}
+tabs.forEach(b=>b.addEventListener('click',()=>go(b.dataset.tab)));
+const projects={
+  trebotti:['Vigna Trebotti','baseline', '12 ha','38 tCO2e','42%','Identità e baseline parziale completate. Evidenze chiave validate: foto cover crop, NDVI maggio, anchor 0x9e31...f04b.'],
+  uae:['UAE Date Farms Demo','monitoring','820 ha','3.120 tCO2e','68%','Monitoring attivo con dati satellite e sensoristica. Evidenze chiave validate: SOC lab, registro pratiche, evidence root 0x7f2a...c91e.'],
+  eu:['EU CRCF Placeholder','draft','340 ha','940 tCO2e','31%','Progetto in intake con protocollo CRCF target. Mancano dati storici e piano permanenza.'],
+  agro:['Agroforestry Pilot','gap dati','80 ha','260 tCO2e','24%','Area identificata, anchor pending. Evidenze catastali e baseline ancora incomplete.']
+};
+function showProject(id){const p=projects[id];document.getElementById('projectDetail').innerHTML='<h2>'+p[0]+'</h2><div class="grid three"><div><b>Stato</b><p>'+p[1]+'</p></div><div><b>Superficie</b><p>'+p[2]+'</p></div><div><b>Crediti stimati</b><p>'+p[3]+'</p></div></div><p class="footer-note">'+p[5]+'</p><span class="pill amber">Readiness '+p[4]+'</span>';go('projects');}
+new Chart(document.getElementById('cropChart'),{type:'doughnut',data:{labels:['Vigneto','Date farm','Crop','Agroforestale'],datasets:[{data:[12,820,600,160],backgroundColor:['#7fa35a','#d78f2f','#2f6f7e','#173d2b']}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
+new Chart(document.getElementById('creditChart'),{type:'bar',data:{labels:['Trebotti','UAE','EU','Agro'],datasets:[{label:'tCO2e stimati',data:[38,3120,940,260],backgroundColor:'#7fa35a'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{color:'#eadfcd'}},x:{grid:{display:false}}}}});
+showProject('uae');
+const initial=location.hash.slice(1);if(initial&&document.getElementById(initial))go(initial);
+</script>
+</body>
+</html>

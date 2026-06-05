@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A-Grid MRV — Admin Command Center</title>
+  <link rel="stylesheet" href="/assets/mrv.css">
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><div class="logo">AG</div><div><h2>A-GRID</h2><p>Internal MRV Command Center</p></div></div>
+    <div class="nav-title">Workspace</div>
+    <nav class="nav" id="nav">
+      <button class="active" data-tab="dashboard">Dashboard MRV</button>
+      <button data-tab="new">Nuovo progetto</button>
+      <button data-tab="projects">Progetti</button>
+      <button data-tab="data">Data hub</button>
+      <button data-tab="evidence">Evidenze</button>
+      <button data-tab="standard">Standard readiness</button>
+      <button data-tab="blockchain">Blockchain / pOsti</button>
+      <button data-tab="report">Report</button>
+      <button data-tab="farmers">Clienti/Farmer</button>
+    </nav>
+    <div class="side-card"><b>Principio guida</b><p><b>MRV first, blockchain from day one.</b><br>Anchor, hash evidenze, timestamp e audit trail prima di qualunque credito.</p></div>
+    <div class="side-card"><b>Vista interna</b><p>Accesso completo a progetti, dati raw, qualità dati, revisioni e report per certificatori.</p></div>
+  </aside>
+  <main class="content">
+    <div class="top">
+      <div><div class="eyebrow">Vista Interna A-Grid</div><h1>Command center operativo per MRV, dati e audit trail</h1><p>Gestione multi-progetto con evidenze, sensoristica, fonti terze, readiness standard e registro blockchain/pOsti.</p></div>
+      <div class="actions"><a class="btn secondary" href="/">Cambia ruolo</a><button class="btn" onclick="go('new')">+ Nuovo progetto</button></div>
+    </div>
+
+    <section id="dashboard" class="section active">
+      <div class="grid kpis">
+        <div class="card kpi"><div class="label">Progetti attivi</div><div class="value">6</div><div class="sub">3 pilot · 3 onboarding</div></div>
+        <div class="card kpi"><div class="label">Superficie totale</div><div class="value">1.592 ha</div><div class="sub">Italia, Spagna, UAE</div></div>
+        <div class="card kpi"><div class="label">Crediti stimati</div><div class="value">4.820</div><div class="sub">tCO2e preliminari</div></div>
+        <div class="card kpi"><div class="label">Readiness medio</div><div class="value">61%</div><div class="sub">84/118 evidenze validate</div></div>
+      </div>
+      <div class="grid two">
+        <div class="card"><h2>Workflow integrato</h2><p class="lead">Conteggio progetti per step MRV.</p>
+          <div class="timeline">
+            <div class="phase"><div class="phase-head"><h3>1. Identità progetto + anchor</h3><span class="pill">6 progetti</span></div><p>Namespace pOsti creato e ruoli assegnati.</p></div>
+            <div class="phase"><div class="phase-head"><h3>2. Baseline e addizionalità</h3><span class="pill amber">4 progetti</span></div><p>Dati storici, scenario BAU, SOC iniziale e gap.</p></div>
+            <div class="phase"><div class="phase-head"><h3>3. Sensori e data acquisition</h3><span class="pill blue">3 progetti</span></div><p>A-Grid IoT, API xFarm, satellite e meteo.</p></div>
+            <div class="phase"><div class="phase-head"><h3>4. Monitoring ed evidence hub</h3><span class="pill violet">3 progetti</span></div><p>Upload, validazione, hash e catena di custodia.</p></div>
+            <div class="phase"><div class="phase-head"><h3>5. Report e readiness</h3><span class="pill amber">2 progetti</span></div><p>Preview report e checklist per standard target.</p></div>
+            <div class="phase"><div class="phase-head"><h3>6. Credito e blockchain</h3><span class="pill red">0 generati</span></div><p>Nessun credito automatico prima della validazione.</p></div>
+          </div>
+        </div>
+        <div class="card"><h2>Mappa appezzamenti</h2><p class="lead">Colore per stato: completo, in progress, gap dati.</p><div class="map static"><div class="plot a">Vigna Trebotti<br><small>12 ha</small></div><div class="plot b">UAE Date Farms<br><small>820 ha</small></div><div class="plot c">Agroforestry Pilot<br><small>80 ha</small></div></div><p class="footer-note">Ultimi eventi: Farmer Trebotti ha caricato analisi suolo; UAE Demo ha raggiunto readiness 68%; sensore WS-01 in delay.</p></div>
+      </div>
+    </section>
+
+    <section id="new" class="section">
+      <h2>Nuovo progetto</h2><p class="lead">Wizard interno per creare progetto MRV e Project Anchor.</p>
+      <div class="grid three">
+        <div class="card"><h2>1. Intake farmer</h2><p class="lead">Anagrafica, azienda, ruoli, progetto e protocollo target.</p><span class="pill">obbligatorio</span></div>
+        <div class="card"><h2>2. GIS e baseline</h2><p class="lead">Appezzamenti, particelle, storico pratiche, BAU e dati suolo.</p><span class="pill amber">data gap check</span></div>
+        <div class="card"><h2>3. Anchor pOsti</h2><p class="lead">Creazione namespace, hash radice e audit log iniziale.</p><span class="pill blue">day one</span></div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <h2>Progetti</h2><p class="lead">Tutti i progetti di tutti i farmer.</p>
+      <div class="table"><div class="row header"><div>Progetto</div><div>Farmer</div><div>Superficie</div><div>Stato</div><div>Readiness</div></div>
+        <div class="row"><div><b>Vigna Trebotti</b><br><small>AG-MRV-IT-2026-012</small></div><div>Trebotti</div><div>12 ha</div><div><span class="pill amber">baseline</span></div><div>42%</div></div>
+        <div class="row"><div><b>UAE Date Farms Demo</b><br><small>AG-MRV-UAE-2026-001</small></div><div>Desert Farms LLC</div><div>820 ha</div><div><span class="pill">monitoring</span></div><div>68%</div></div>
+        <div class="row"><div><b>EU CRCF Placeholder</b><br><small>AG-MRV-EU-2026-004</small></div><div>Consorzio EU</div><div>340 ha</div><div><span class="pill amber">draft</span></div><div>31%</div></div>
+        <div class="row"><div><b>Agroforestry Pilot</b><br><small>anchor pending</small></div><div>Soc. Agricola Verde</div><div>80 ha</div><div><span class="pill red">gap dati</span></div><div>24%</div></div>
+      </div>
+    </section>
+
+    <section id="data" class="section">
+      <div class="grid two">
+        <div class="card"><h2>Data hub</h2><p class="lead">Sensori installati e qualità dati per tutti i progetti.</p>
+          <div class="table"><div class="row header"><div>Asset</div><div>Progetto</div><div>Tipo</div><div>Stato</div><div>Fonte</div></div>
+            <div class="row"><div>Eddy Tower T1</div><div>Vigna Trebotti</div><div>CO2 flux</div><div><span class="pill">online</span></div><div><span class="pill">prima mano</span></div></div>
+            <div class="row"><div>SM Probe 02</div><div>Vigna Trebotti</div><div>Soil moisture</div><div><span class="pill">online</span></div><div><span class="pill">prima mano</span></div></div>
+            <div class="row"><div>xFarm API</div><div>3 progetti</div><div>Quaderno</div><div><span class="pill blue">connessa</span></div><div><span class="pill blue">terza parte</span></div></div>
+            <div class="row"><div>Satellite NDVI</div><div>6 progetti</div><div>Remote sensing</div><div><span class="pill blue">ok</span></div><div><span class="pill blue">terza parte</span></div></div>
+            <div class="row"><div>Weather WS-01</div><div>Vigna Trebotti</div><div>Meteo</div><div><span class="pill amber">delay</span></div><div><span class="pill">prima mano</span></div></div>
+          </div>
+        </div>
+        <div class="card"><h2>Qualità dati</h2><div class="timeline"><div class="phase"><div class="phase-head"><h3>Copertura sensori</h3><span class="pill">87%</span></div><p>Gap temporali su meteo WS-01 nelle ultime 18 ore.</p></div><div class="phase"><div class="phase-head"><h3>Baseline completeness</h3><span class="pill amber">64%</span></div><p>SOC e storico input sono i gap più ricorrenti.</p></div><div class="phase"><div class="phase-head"><h3>Alert attivi</h3><span class="pill red">3</span></div><p>1 sensore offline, 2 evidenze senza geotag.</p></div></div></div>
+      </div>
+    </section>
+
+    <section id="evidence" class="section">
+      <h2>Evidence hub globale</h2><p class="lead">Ogni evidenza ha fingerprint blockchain, timestamp, reviewer e relazione con progetto/plot.</p>
+      <div class="grid two"><div class="card evidence">
+        <div class="evi"><div><b>Foto cover crop — Vigna Trebotti</b><small>Geo-tag · 24/05/2026 · hash 0xa91f...</small></div><span class="pill">validata</span></div>
+        <div class="evi"><div><b>Analisi SOC — UAE Date Farms</b><small>Laboratorio · reviewer agronomo · hash 0x44b2...</small></div><span class="pill">validata</span></div>
+        <div class="evi"><div><b>Registro minima lavorazione</b><small>Documento tecnico · timestamp creato</small></div><span class="pill blue">review</span></div>
+        <div class="evi"><div><b>Documenti catastali — Agroforestry</b><small>Upload incompleto</small></div><span class="pill red">da integrare</span></div>
+      </div><div class="card"><h2>Catena di custodia</h2><p class="lead">Upload → hash → timestamp → reviewer → notarizzazione pOsti → report.</p><span class="pill dark">84 validate</span> <span class="pill amber">23 review</span> <span class="pill red">11 gap</span></div></div>
+    </section>
+
+    <section id="standard" class="section">
+      <h2>Standard readiness</h2><p class="lead">Mappatura per progetto e globale verso CRCF, Verra, Gold Standard, Folia e schemi locali.</p>
+      <div class="grid three"><div class="card"><h2>CRCF</h2><p class="lead">Addizionalità, permanenza, sostenibilità, robustezza MRV.</p><span class="pill amber">61% medio</span></div><div class="card"><h2>Verra VCS</h2><p class="lead">Baseline, leakage, uncertainty, monitoring plan.</p><span class="pill amber">template futuro</span></div><div class="card"><h2>Gold Standard</h2><p class="lead">Safeguards, stakeholder consultation e SDG mapping.</p><span class="pill blue">supporto</span></div></div>
+    </section>
+
+    <section id="blockchain" class="section">
+      <h2>Blockchain / pOsti</h2><p class="lead">Registro transazioni, anchor, hash evidenze e audit events.</p>
+      <div class="table"><div class="row header"><div>Evento</div><div>Progetto</div><div>Hash</div><div>Timestamp</div><div>Stato</div></div>
+        <div class="row"><div>Project Anchor</div><div>Vigna Trebotti</div><div class="mono">0x9e31...f04b</div><div>05/06/2026</div><div><span class="pill">notarizzato</span></div></div>
+        <div class="row"><div>Evidence Hash</div><div>UAE Date Farms</div><div class="mono">0x7f2a...c91e</div><div>02/06/2026</div><div><span class="pill">notarizzato</span></div></div>
+        <div class="row"><div>Review Event</div><div>Agroforestry Pilot</div><div class="mono">0x0000...pending</div><div>pending</div><div><span class="pill amber">draft</span></div></div>
+      </div>
+    </section>
+
+    <section id="report" class="section">
+      <h2>Report</h2><p class="lead">Generazione report per certificatori, stakeholder e audit package.</p>
+      <div class="grid three"><div class="card"><h2>MRV Readiness Report</h2><p class="lead">PDF tecnico con gap, evidenze e readiness.</p><button class="btn">Genera</button></div><div class="card"><h2>Audit Package</h2><p class="lead">Excel dati, JSON pOsti, hash log e allegati.</p><button class="btn secondary">Prepara</button></div><div class="card"><h2>Stakeholder Summary</h2><p class="lead">Vista sintetica read-only senza dati raw.</p><button class="btn secondary">Esporta</button></div></div>
+    </section>
+
+    <section id="farmers" class="section">
+      <h2>Clienti/Farmer</h2><p class="lead">Anagrafica farmer e stato onboarding.</p>
+      <div class="table"><div class="row header"><div>Cliente</div><div>Paese</div><div>Progetti</div><div>Onboarding</div><div>Owner</div></div>
+        <div class="row"><div><b>Trebotti</b><br><small>azienda vitivinicola</small></div><div>Italia</div><div>1</div><div><span class="pill amber">baseline</span></div><div>MRV Ops</div></div>
+        <div class="row"><div><b>Desert Farms LLC</b></div><div>UAE</div><div>1</div><div><span class="pill">monitoring</span></div><div>Science</div></div>
+        <div class="row"><div><b>Consorzio EU</b></div><div>Italia / Spagna</div><div>2</div><div><span class="pill amber">data intake</span></div><div>Sales Ops</div></div>
+      </div>
+    </section>
+  </main>
+</div>
+<script>
+const tabs=[...document.querySelectorAll('[data-tab]')], sections=[...document.querySelectorAll('.section')];
+function go(id){sections.forEach(s=>s.classList.toggle('active',s.id===id));tabs.forEach(b=>b.classList.toggle('active',b.dataset.tab===id));location.hash=id;window.scrollTo({top:0,behavior:'smooth'});}
+tabs.forEach(b=>b.addEventListener('click',()=>go(b.dataset.tab)));
+const initial=location.hash.slice(1);if(initial&&document.getElementById(initial))go(initial);
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A-Grid — Mappa IoT live</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="/assets/mrv.css">
+</head>
+<body>
+<main class="public-shell">
+  <nav class="public-nav"><div class="brand"><div class="logo">AG</div><div><h2>A-GRID</h2><p>Mappa interattiva</p></div></div><div class="actions"><a class="btn secondary" href="/app/carbon-balance.html">Carbon balance</a><a class="btn secondary" href="/farmer/">Farmer</a></div></nav>
+  <section class="hero-band"><div class="eyebrow">Sprint 2 · F2</div><h1>Mappa IoT live + dMRV satellite</h1><p class="lead">Layer controls, parcelle, sensori IoT, overlay NDVI, SOC baseline e time slider mock.</p></section>
+  <section class="card">
+    <div class="map-wrap"><div class="map-panel"><label><input type="checkbox" checked onchange="toggleLayer('satellite',this.checked)"> Satellite</label><label><input type="checkbox" checked onchange="toggleLayer('iot',this.checked)"> IoT sensors</label><label><input type="checkbox" checked onchange="toggleLayer('parcels',this.checked)"> Parcelle</label><label><input type="checkbox" onchange="toggleLayer('ndvi',this.checked)"> NDVI</label><label><input type="checkbox" onchange="toggleLayer('soc',this.checked)"> SOC baseline</label><input type="range" min="1" max="12" value="6"></div><div id="map" class="map" style="min-height:560px"></div></div>
+  </section>
+</main>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const map=L.map('map',{scrollWheelZoom:false}).setView([42.36,12.18],13);
+const satellite=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{attribution:'Esri'});
+const osm=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+satellite.addTo(map);
+const groups={parcels:L.layerGroup().addTo(map),iot:L.layerGroup().addTo(map),ndvi:L.layerGroup(),soc:L.layerGroup()};
+L.polygon([[42.352,12.155],[42.371,12.165],[42.367,12.197],[42.346,12.19]],{color:'#173d2b',fillColor:'#7fa35a',fillOpacity:.35}).bindPopup('Parcella Nord · 7,2 ha · CRCF · SOC 34 tC/ha').addTo(groups.parcels);
+L.circleMarker([42.362,12.181],{radius:9,color:'#2f6f7e'}).bindPopup('SM-01<br>Umidita 34.2%<br>Temp 18.4 C<br>CO2 412 ppm<br>pH 6.8<br>TX 0xa3f...42b').addTo(groups.iot);
+L.circleMarker([42.357,12.191],{radius:9,color:'#7fa35a'}).bindPopup('Eddy T1<br>CO2 flux -1.8 gC/m2<br>Ultimo: 2 min fa').addTo(groups.iot);
+L.rectangle([[42.345,12.15],[42.375,12.22]],{color:'#7fa35a',fillColor:'#7fa35a',fillOpacity:.22}).bindPopup('NDVI medio 0.71').addTo(groups.ndvi);
+L.rectangle([[42.347,12.152],[42.373,12.218]],{color:'#d78f2f',fillColor:'#d78f2f',fillOpacity:.25}).bindPopup('SOC baseline 31-38 tC/ha').addTo(groups.soc);
+function toggleLayer(name,on){if(name==='satellite'){on?satellite.addTo(map):map.removeLayer(satellite);return;}on?groups[name].addTo(map):map.removeLayer(groups[name]);}
+</script>
+</body>
+</html>

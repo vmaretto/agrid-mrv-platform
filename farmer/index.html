@@ -21,17 +21,19 @@
     <div class="progress-list" id="stepNav">
       <div class="progress-item done active" data-step="1"><div class="dot">1</div><div><b>Identità progetto</b><span>Anchor creato</span></div></div>
       <div class="progress-item done" data-step="2"><div class="dot">2</div><div><b>Baseline</b><span>Parziale</span></div></div>
-      <div class="progress-item activeable" data-step="3"><div class="dot">3</div><div><b>Sensori e dati</b><span>Installazione attiva</span></div></div>
+      <div class="progress-item" data-step="3"><div class="dot">3</div><div><b>Sensori e dati</b><span>Installazione attiva</span></div></div>
       <div class="progress-item" data-step="4"><div class="dot">4</div><div><b>Evidence hub</b><span>8/12 validate</span></div></div>
-      <div class="progress-item locked" data-step="5"><div class="dot">5</div><div><b>Report readiness</b><span>In preparazione</span></div></div>
+      <div class="progress-item" data-step="5"><div class="dot">5</div><div><b>Report readiness</b><span>In preparazione</span></div></div>
       <div class="progress-item locked" data-step="6"><div class="dot">6</div><div><b>Credito blockchain</b><span>Bloccato</span></div></div>
+      <div class="progress-item locked" data-step="7"><div class="dot">7</div><div><b>Exchange readiness</b><span>Non ready</span></div></div>
     </div>
     <div class="side-card"><b>Notifiche</b><p>Hai 2 evidenze da caricare.<br>Baseline incompleta: mancano dati suolo SOC 2023.</p></div>
   </aside>
+
   <main class="content">
     <div class="top">
-      <div><div class="eyebrow">Vista Farmer / Cliente</div><h1>Vigna Trebotti — Carbon Farming Pilot</h1><p>Wizard guidato per completare identità progetto, baseline, dati sensori, evidenze, report e readiness verso credito verificabile.</p></div>
-      <div class="actions"><a class="btn secondary" href="/">Cambia ruolo</a><button class="btn" onclick="nextStep()">Avanza step</button></div>
+      <div><div class="eyebrow">Vista Farmer / Cliente</div><h1>Vigna Trebotti — Carbon Farming Pilot</h1><p>Wizard guidato per completare identità progetto, baseline, dati sensori, evidenze, report, credito e readiness verso listing.</p></div>
+      <div class="actions"><a class="btn secondary" href="/">Cambia ruolo</a><a class="btn secondary" href="/calculator/">Calcolatore</a><button class="btn" onclick="nextStep()">Avanza step</button></div>
     </div>
     <div class="grid kpis">
       <div class="card kpi"><div class="label">Farmer</div><div class="value">Trebotti</div><div class="sub">azienda vitivinicola demo</div></div>
@@ -43,93 +45,175 @@
     <section id="step-1" class="section active">
       <div class="grid two">
         <div class="card">
-          <h2>Step 1 — Identità progetto</h2><p class="lead">Dati iniziali, area progetto, protocollo target e anchor blockchain creato al completamento.</p>
+          <h2>Step 1 — Identità progetto</h2><p class="lead">Dati iniziali, area progetto, protocollo target e Project Anchor.</p>
           <div class="fields">
-            <div class="field"><label>Nome progetto</label><input value="Vigna Trebotti — Carbon Farming Pilot"></div>
-            <div class="field"><label>Ubicazione</label><input value="Lazio, Italia"></div>
-            <div class="field"><label>Tipo coltura</label><select><option>Vigneto</option><option>Noccioleto</option><option>Oliveto</option><option>Agroforestale</option><option>Crop</option><option>Altro</option></select></div>
+            <div class="field clickable" onclick="openPanel('projectData')"><label>Nome progetto</label><input value="Vigna Trebotti — Carbon Farming Pilot"></div>
+            <div class="field clickable" onclick="openPanel('projectData')"><label>Ubicazione</label><input value="Lazio, Italia"></div>
+            <div class="field"><label>Tipo coltura</label><select><option>Vigneto</option><option>Noccioleto</option><option>Oliveto</option><option>Agroforestale</option></select></div>
             <div class="field"><label>Superficie</label><input value="12 ha"></div>
-            <div class="field"><label>Protocollo target</label><select><option>CRCF (Reg. EU 2024/3012)</option><option>Verra VCS</option><option>Gold Standard</option><option>Folia</option><option>Altro</option></select></div>
-            <div class="field"><label>Documenti catastali</label><input value="visura_catastale_demo.pdf caricato"></div>
+            <div class="field"><label>Protocollo target</label><select><option>CRCF (Reg. EU 2024/3012)</option><option>Verra VCS</option><option>Gold Standard</option></select></div>
+            <div class="field clickable" onclick="openPanel('cadastreUpload')"><label>Documenti catastali</label><input value="visura_catastale_demo.pdf caricato"></div>
           </div>
-          <p class="footer-note"><span class="pill">Anchor creato</span> Hash <span class="mono">0x9e31a72c...f04b</span> · timestamp 05/06/2026 11:42 CEST.</p>
+          <p class="footer-note clickable" onclick="openPanel('anchor')"><span class="pill">Anchor creato</span> Hash <span class="mono">0x9e31a72c...f04b</span> · timestamp 05/06/2026 11:42 CEST.</p>
         </div>
-        <div class="card"><h2>Area progetto</h2><p class="lead">Mappa OSM con poligono appezzamento demo.</p><div id="farmerMap" class="map"></div></div>
+        <div class="card"><h2>I miei campi</h2><p class="lead">Mappa satellitare con parcelle, sensori e stato dati.</p><div class="map-wrap"><div class="field-map-tools"><button class="btn secondary" onclick="openPanel('addParcel')">Aggiungi parcella</button><button class="btn secondary" onclick="openPanel('gisImport')">Import GIS</button></div><div id="farmerMap" class="map"></div></div></div>
       </div>
     </section>
 
     <section id="step-2" class="section">
       <div class="grid two">
-        <div class="card"><h2>Step 2 — Baseline e addizionalità</h2><p class="lead">Storico pratiche agricole e scenario BAU assistito.</p>
-          <div class="table"><div class="row header"><div>Anno</div><div>Coltura</div><div>Lavorazioni</div><div>Input</div><div>Irrigazione</div></div>
+        <div class="card"><h2>Step 2 — Baseline e addizionalità</h2><p class="lead">Storico pratiche agricole, fonti aziendali e scenario BAU.</p>
+          <div class="table clickable" onclick="openPanel('farmHistory')"><div class="row header"><div>Anno</div><div>Coltura</div><div>Lavorazioni</div><div>Input</div><div>Irrigazione</div></div>
             <div class="row"><div>2021</div><div>Sangiovese</div><div>2 passaggi</div><div>rame + zolfo</div><div>goccia</div></div>
             <div class="row"><div>2022</div><div>Sangiovese</div><div>2 passaggi</div><div>input medi</div><div>goccia</div></div>
             <div class="row"><div>2023</div><div>Sangiovese</div><div>1 passaggio</div><div>ridotti</div><div>goccia</div></div>
           </div>
           <div class="fields" style="margin-top:12px">
-            <div class="field"><label>SOC iniziale</label><input value="1,18% · campione 2024"></div>
-            <div class="field"><label>Fonte xFarm</label><input value="Placeholder API collegata"></div>
-            <div class="field full"><label>Scenario BAU</label><textarea>Gestione convenzionale del vigneto con lavorazione interfilare periodica, residui parzialmente rimossi e copertura vegetale non permanente.</textarea></div>
+            <div class="field clickable" onclick="openPanel('soilData')"><label>SOC iniziale</label><input value="1,18% · campione 2024"></div>
+            <div class="field clickable" onclick="openPanel('xfarm')"><label>Fonte xFarm</label><input value="Placeholder API collegata"></div>
+            <div class="field full clickable" onclick="openPanel('bau')"><label>Scenario BAU</label><textarea>Gestione convenzionale del vigneto con lavorazione interfilare periodica, residui parzialmente rimossi e copertura vegetale non permanente.</textarea></div>
           </div>
         </div>
-        <div class="card"><h2>Checklist addizionalità</h2><p class="lead">Campi completati: 7/10.</p><div class="bar"><i style="width:70%"></i></div><div class="timeline" style="margin-top:14px"><div class="phase"><div class="phase-head"><h3>Dati suolo esistenti</h3><span class="pill amber">gap 2023</span></div><p>Caricata analisi 2024. Mancano profondità replicate per alcuni filari.</p></div><div class="phase"><div class="phase-head"><h3>Quaderno di campagna</h3><span class="pill">collegato</span></div><p>Connessione mock xFarm attiva.</p></div></div></div>
+        <div class="card"><h2>Checklist addizionalità</h2><p class="lead">Campi completati: 7/10.</p><div class="bar"><i style="width:70%"></i></div>
+          <div class="timeline" style="margin-top:14px">
+            <div class="phase clickable" onclick="openPanel('soilData')"><div class="phase-head"><h3>Dati suolo esistenti</h3><span class="pill amber">gap 2023</span></div><p>Caricata analisi 2024. Mancano profondità replicate per alcuni filari.</p></div>
+            <div class="phase clickable" onclick="openPanel('xfarm')"><div class="phase-head"><h3>Quaderno di campagna</h3><span class="pill">collegato</span></div><p>Connessione mock xFarm attiva.</p></div>
+          </div>
+        </div>
       </div>
     </section>
 
     <section id="step-3" class="section">
       <div class="grid two">
-        <div class="card"><h2>Step 3 — Sensori e acquisizione dati</h2><p class="lead">Sensori di prima mano A-Grid e fonti terze con stato connessione.</p>
+        <div class="card"><h2>Step 3 — Sensori e acquisizione dati</h2><p class="lead">Sensori di prima mano A-Grid, dati raw e fonti terze.</p>
           <div class="table"><div class="row header"><div>Sensore</div><div>Tipo</div><div>Ultimo dato</div><div>Stato</div><div>Fonte</div></div>
-            <div class="row"><div>Eddy Tower T1</div><div>CO2 flux</div><div>-1,8 gC/m2</div><div><span class="pill">online</span></div><div>prima mano</div></div>
-            <div class="row"><div>Probe SM-01</div><div>Soil moisture</div><div>23%</div><div><span class="pill">online</span></div><div>prima mano</div></div>
-            <div class="row"><div>Probe SM-02</div><div>Soil moisture</div><div>21%</div><div><span class="pill">online</span></div><div>prima mano</div></div>
-            <div class="row"><div>Meteo WS-01</div><div>Temperature</div><div>24,2 C</div><div><span class="pill amber">delay</span></div><div>prima mano</div></div>
+            <div class="row clickable" onclick="openSensor('eddy')"><div>Eddy Tower T1</div><div>CO2 flux</div><div>-1,8 gC/m2</div><div><span class="pill">online</span></div><div>prima mano</div></div>
+            <div class="row clickable" onclick="openSensor('sm01')"><div>Probe SM-01</div><div>Soil moisture</div><div>23%</div><div><span class="pill">online</span></div><div>prima mano</div></div>
+            <div class="row clickable" onclick="openSensor('sm02')"><div>Probe SM-02</div><div>Soil moisture</div><div>21%</div><div><span class="pill">online</span></div><div>prima mano</div></div>
+            <div class="row clickable" onclick="openSensor('meteo')"><div>Meteo WS-01</div><div>Temperature</div><div>24,2 C</div><div><span class="pill amber">delay</span></div><div>prima mano</div></div>
           </div>
         </div>
-        <div class="card"><h2>Dati live mock</h2><p class="lead">Soil moisture e CO2 flux nelle ultime rilevazioni.</p><div class="chart-box"><canvas id="sensorChart"></canvas></div><p class="footer-note"><span class="pill blue">xFarm</span> <span class="pill blue">Satellite NDVI</span> <span class="pill blue">Stazione meteo</span></p></div>
+        <div class="card"><h2>Dati live mock</h2><p class="lead">IoT + satellite + meteo. Il satellite completa i sensori, non li sostituisce.</p><div class="chart-box"><canvas id="sensorChart"></canvas></div><p class="footer-note"><span class="pill blue clickable" onclick="openPanel('xfarm')">xFarm</span> <span class="pill blue clickable" onclick="openPanel('satellite')">Satellite NDVI</span> <span class="pill blue clickable" onclick="openPanel('meteoSource')">Stazione meteo</span></p></div>
       </div>
     </section>
 
     <section id="step-4" class="section">
       <div class="grid two">
-        <div class="card evidence"><h2>Step 4 — Monitoring e evidence hub</h2><p class="lead">Timeline evidenze raccolte con hash, timestamp e stato revisione.</p>
-          <div class="evi"><div><b>Foto georeferenziata cover crop</b><small>0xa91f...c21d · 24/05/2026</small></div><span class="pill">validata</span></div>
-          <div class="evi"><div><b>Analisi suolo SOC 0-30 cm</b><small>0x41ab...7ed2 · profondità parziale</small></div><span class="pill amber">review</span></div>
-          <div class="evi"><div><b>NDVI vigneto maggio</b><small>0x77fe...129a · Sentinel support layer</small></div><span class="pill">validata</span></div>
-          <div class="evi"><div><b>Registro irrigazione</b><small>hash pending · upload richiesto</small></div><span class="pill red">da integrare</span></div>
+        <div class="card evidence"><h2>Step 4 — Monitoring e evidence hub</h2><p class="lead">Timeline evidenze con hash, timestamp, stato revisione e azioni di integrazione.</p>
+          <div class="evi clickable" onclick="openEvidence('photo')"><div><b>Foto georeferenziata cover crop</b><small>0xa91f...c21d · 24/05/2026</small></div><span class="pill">validata</span></div>
+          <div class="evi clickable" onclick="openEvidence('soil')"><div><b>Analisi suolo SOC 0-30 cm</b><small>0x41ab...7ed2 · profondità parziale</small></div><span class="pill amber">review</span></div>
+          <div class="evi clickable" onclick="openEvidence('ndvi')"><div><b>NDVI vigneto maggio</b><small>0x77fe...129a · Sentinel support layer</small></div><span class="pill">validata</span></div>
+          <div class="evi clickable" onclick="openEvidence('irrigation')"><div><b>Registro irrigazione</b><small>hash pending · upload richiesto</small></div><span class="pill red">da integrare</span></div>
         </div>
-        <div class="card"><h2>Calendario monitoraggio</h2><div class="timeline"><div class="phase"><div class="phase-head"><h3>Giugno 2026</h3><span class="pill amber">2 attività</span></div><p>Upload registro irrigazione e foto filari nord.</p></div><div class="phase"><div class="phase-head"><h3>Luglio 2026</h3><span class="pill blue">campione suolo</span></div><p>Secondo round campionamento SOC per completare baseline.</p></div></div><button class="btn" style="margin-top:14px">Carica nuova evidenza</button></div>
+        <div class="card"><h2>Calendario monitoraggio</h2><div class="timeline"><div class="phase clickable" onclick="openPanel('juneTasks')"><div class="phase-head"><h3>Giugno 2026</h3><span class="pill amber">2 attività</span></div><p>Upload registro irrigazione e foto filari nord.</p></div><div class="phase clickable" onclick="openPanel('soilData')"><div class="phase-head"><h3>Luglio 2026</h3><span class="pill blue">campione suolo</span></div><p>Secondo round campionamento SOC per completare baseline.</p></div></div><button class="btn" style="margin-top:14px" onclick="openPanel('newEvidence')">Carica nuova evidenza</button></div>
       </div>
     </section>
 
     <section id="step-5" class="section">
       <div class="grid two">
-        <div class="card"><h2>Step 5 — Report e standard readiness</h2><p class="lead">Preview non editabile del report generato dai dati raccolti.</p><div class="timeline"><div class="phase"><div class="phase-head"><h3>CRCF requirements</h3><span class="pill amber">42%</span></div><p>Requisiti soddisfatti: identità progetto, baseline parziale, prime evidenze validate. Mancano SOC replicato e piano permanenza.</p></div><div class="phase"><div class="phase-head"><h3>Stima crediti preliminare</h3><span class="pill blue">mock</span></div><p>12 ha x coefficiente vigneto x pratiche conservative: 38 tCO2e potenziali, alta incertezza.</p></div></div></div>
-        <div class="card"><h2>Readiness protocollo</h2><div class="bar"><i style="width:42%"></i></div><p class="footer-note">Badge: <span class="pill amber">Readiness 42%</span> Certificazione non ancora pronta.</p></div>
+        <div class="card"><h2>Step 5 — Report e standard readiness</h2><p class="lead">Dashboard di controllo: ogni gap rimanda allo step da completare.</p>
+          <div class="timeline">
+            <div class="phase clickable" onclick="showStep(1)"><div class="phase-head"><h3>Identità progetto</h3><span class="pill">ok</span></div><p>Project Anchor creato e documenti catastali presenti.</p></div>
+            <div class="phase clickable" onclick="showStep(2)"><div class="phase-head"><h3>Baseline parziale</h3><span class="pill amber">gap</span></div><p>Mancano SOC replicato e dati 2023.</p></div>
+            <div class="phase clickable" onclick="showStep(4)"><div class="phase-head"><h3>Prime evidenze validate</h3><span class="pill amber">8/12</span></div><p>Registro irrigazione e foto filari nord da integrare.</p></div>
+            <div class="phase clickable" onclick="openPanel('permanence')"><div class="phase-head"><h3>Piano permanenza</h3><span class="pill red">mancante</span></div><p>Documento necessario per spiegare come il carbonio verrà mantenuto nel tempo.</p></div>
+            <div class="phase clickable" onclick="openPanel('creditEstimate')"><div class="phase-head"><h3>Stima crediti preliminare</h3><span class="pill blue">mock</span></div><p>12 ha x coefficiente vigneto x pratiche conservative: 38 tCO2e potenziali, alta incertezza.</p></div>
+          </div>
+        </div>
+        <div class="card"><h2>Readiness protocollo</h2><div class="bar"><i style="width:42%"></i></div><p class="footer-note">Badge: <span class="pill amber">Readiness 42%</span> Certificazione non ancora pronta.</p><button class="btn secondary" onclick="openPanel('reportPreview')">Apri preview report</button></div>
       </div>
     </section>
 
     <section id="step-6" class="section">
       <div class="grid two">
-        <div class="card"><h2>Step 6 — Credito e blockchain</h2><p class="lead">La vista credito si sblocca con readiness pari o superiore all'80%.</p><div class="timeline"><div class="phase"><div class="phase-head"><h3>Stato credito</h3><span class="pill red">in attesa validazione</span></div><p>Credito non generato. Nessun token e nessun listing prima della validazione metodologica.</p></div><div class="phase"><div class="phase-head"><h3>Contratto blockchain</h3><span class="pill blue">mock</span></div><p class="mono">Polygon · 0x0000...pending · explorer link disponibile dopo approvazione.</p></div></div></div>
-        <div class="card"><h2>Exchange readiness</h2><p class="lead">Bloccata finché report e requisiti CRCF non superano la soglia interna.</p><span class="pill red">Non exchange ready</span></div>
+        <div class="card"><h2>Step 6 — Credito e blockchain</h2><p class="lead">Preparazione credito dopo readiness MRV >= 80%. Exchange separato nello Step 7.</p><div class="timeline"><div class="phase clickable" onclick="showStep(5)"><div class="phase-head"><h3>Stato credito</h3><span class="pill red">in attesa validazione</span></div><p>Credito non generato. Completare readiness e validazione metodologica.</p></div><div class="phase clickable" onclick="openPanel('contract')"><div class="phase-head"><h3>Contratto blockchain</h3><span class="pill blue">mock</span></div><p class="mono">Polygon · 0x0000...pending · explorer link dopo approvazione.</p></div></div></div>
+        <div class="card"><h2>Guadagni trasparenti</h2><p class="lead">Scenario visibile al farmer quando il credito viene verificato.</p><div class="payment-row"><span>Crediti verificati</span><b>12,4 tCO2e</b></div><div class="payment-row"><span>Prezzo mercato</span><b>30 €/tCO2e</b></div><div class="payment-row"><span>A te (70%)</span><b>260,40 €</b></div><div class="payment-row"><span>Piattaforma (15%)</span><b>55,80 €</b></div><div class="payment-row"><span>Buffer pool (10%)</span><b>37,20 €</b></div><div class="payment-row"><span>Verifica (5%)</span><b>18,60 €</b></div><p class="footer-note">Mock: pagamento bloccato finché il credito non è validato.</p></div>
+      </div>
+    </section>
+
+    <section id="step-7" class="section">
+      <div class="grid two">
+        <div class="card"><h2>Step 7 — Exchange readiness</h2><p class="lead">Checklist separata per capire se un credito validato può essere listato o scambiato.</p><div class="timeline"><div class="phase clickable" onclick="showStep(6)"><div class="phase-head"><h3>Credito generato</h3><span class="pill red">no</span></div><p>Prima serve generazione/validazione credito nello Step 6.</p></div><div class="phase clickable" onclick="showStep(5)"><div class="phase-head"><h3>Documentazione completa</h3><span class="pill amber">incompleta</span></div><p>Report, piano permanenza e SOC replicato ancora mancanti.</p></div><div class="phase clickable" onclick="openPanel('exchange')"><div class="phase-head"><h3>Doppio conteggio e owner</h3><span class="pill red">da verificare</span></div><p>Serve controllo registry, autorizzazione vendita e ownership del credito.</p></div></div></div>
+        <div class="card"><h2>Stato listing</h2><p class="lead">Bloccata finché report, credito e requisiti CRCF non superano la soglia interna.</p><span class="pill red">Non exchange ready</span><div class="mini-actions"><button class="btn secondary" onclick="showStep(5)">Risolvi gap report</button><button class="btn secondary" onclick="showStep(6)">Vai al credito</button></div></div>
+      </div>
+    </section>
+
+    <section id="extras" class="section">
+      <div class="grid two">
+        <div class="card"><h2>Co-benefits</h2><p class="lead">Indicatori extra calcolati dagli stessi dati MRV.</p><div class="benefit-meter"><b>Carbonio</b><div class="bar"><i style="width:82%"></i></div><span>12,4 tCO2e</span></div><div class="benefit-meter"><b>Acqua</b><div class="bar"><i style="width:60%"></i></div><span>-15%</span></div><div class="benefit-meter"><b>Biodiversità</b><div class="bar"><i style="width:50%"></i></div><span>B+</span></div><div class="benefit-meter"><b>Salute suolo</b><div class="bar"><i style="width:72%"></i></div><span>SOC +0,3%</span></div><div class="mini-actions"><button class="btn secondary" onclick="openPanel('whatIf')">What-if cover crop</button><button class="btn secondary" onclick="openPanel('benefits')">Dettaglio</button></div></div>
+        <div class="card"><h2>dMRV satellite</h2><p class="lead">Sentinel NDVI, umidità e boundary detection come layer automatici complementari ai sensori IoT.</p><div class="timeline"><div class="phase"><div class="phase-head"><h3>Sentinel-2 NDVI</h3><span class="pill">5gg revisit</span></div><p>Usato per vigoria vegetativa e copertura suolo.</p></div><div class="phase"><div class="phase-head"><h3>Sentinel-1 SAR</h3><span class="pill blue">proxy umidità</span></div><p>Supporto dove mancano sensori, con incertezza dichiarata.</p></div></div></div>
       </div>
     </section>
   </main>
 </div>
+
+<div id="drawerBackdrop" class="drawer-backdrop" onclick="closePanel(event)">
+  <aside class="drawer" onclick="event.stopPropagation()">
+    <div class="drawer-head"><div><div class="eyebrow" id="drawerEyebrow">Dettaglio</div><h2 id="drawerTitle">Dettaglio</h2></div><button class="icon-btn" onclick="closePanel()">×</button></div>
+    <div id="drawerBody"></div>
+  </aside>
+</div>
+
+<div class="chat-panel card" id="chatPanel">
+  <h2>Assistente A-Grid</h2><p class="lead">Mock AI companion in italiano. Non dà consigli finanziari né promette crediti.</p>
+  <div class="chat-log" id="chatLog"><div class="chat-msg ai">Posso aiutarti su baseline, sensori, evidenze e requisiti CRCF del progetto Vigna Trebotti.</div></div>
+  <div class="field"><label>Domanda</label><input id="chatInput" value="Cosa manca per completare la baseline?"></div>
+  <button class="btn" onclick="sendChat()">Invia</button>
+</div>
+<button class="btn chat-launcher" onclick="toggleChat()">AI Companion</button>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 const sections=[...document.querySelectorAll('.section')], items=[...document.querySelectorAll('.progress-item')];
 let active=Number(location.hash.replace('#step-',''))||1;
 function showStep(n){active=n;sections.forEach(s=>s.classList.toggle('active',s.id==='step-'+n));items.forEach(i=>i.classList.toggle('active',Number(i.dataset.step)===n));location.hash='step-'+n;window.scrollTo({top:0,behavior:'smooth'});}
-function nextStep(){showStep(Math.min(6,active+1));}
+function nextStep(){showStep(Math.min(7,active+1));}
 items.forEach(i=>i.addEventListener('click',()=>showStep(Number(i.dataset.step))));
 showStep(active);
+
 const map=L.map('farmerMap',{scrollWheelZoom:false}).setView([42.36,12.18],13);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap'}).addTo(map);
-L.polygon([[42.352,12.155],[42.371,12.165],[42.367,12.197],[42.346,12.19]],{color:'#173d2b',fillColor:'#7fa35a',fillOpacity:.35}).addTo(map).bindPopup('Vigna Trebotti · 12 ha');
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{attribution:'Esri World Imagery'}).addTo(map);
+const plots=[
+  {name:'Parcella Nord',coords:[[42.352,12.155],[42.371,12.165],[42.367,12.197],[42.346,12.19]],color:'#7fa35a',status:'dati OK'},
+  {name:'Filare Est',coords:[[42.361,12.198],[42.374,12.205],[42.369,12.218],[42.356,12.212]],color:'#d78f2f',status:'in attesa sensore'}
+];
+plots.forEach(p=>L.polygon(p.coords,{color:'#173d2b',fillColor:p.color,fillOpacity:.42}).addTo(map).bindPopup('<b>'+p.name+'</b><br>4,8 ha · '+p.status+'<br>Pratiche: cover crop, minima lavorazione<br>Crediti stimati: 15 tCO2e'));
+L.circleMarker([42.362,12.181],{radius:8,color:'#2f6f7e'}).addTo(map).bindPopup('Probe SM-01 · soil moisture 23%');
+L.circleMarker([42.357,12.191],{radius:8,color:'#7fa35a'}).addTo(map).bindPopup('Eddy Tower T1 · CO2 flux -1,8 gC/m2');
+
 new Chart(document.getElementById('sensorChart'),{type:'line',data:{labels:['Lun','Mar','Mer','Gio','Ven','Sab','Dom'],datasets:[{label:'Soil moisture %',data:[22,24,23,21,23,25,24],borderColor:'#2f6f7e',backgroundColor:'rgba(47,111,126,.12)',tension:.35},{label:'CO2 flux gC/m2',data:[-1.1,-1.4,-1.2,-1.9,-1.8,-2.1,-1.7],borderColor:'#7fa35a',backgroundColor:'rgba(127,163,90,.14)',tension:.35}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}},scales:{y:{grid:{color:'#eadfcd'}},x:{grid:{display:false}}}}});
+
+const panelCopy={
+  projectData:['Maschera dati progetto','Step 1','Interfaccia futura per inserire/modificare nome progetto, azienda, localizzazione, coltura, superficie e protocollo target prima della conferma anchor.'],
+  cadastreUpload:['Caricamento documenti catastali','Step 1','Upload documenti, validazione formato, collegamento a particelle e storico revisioni dopo Project Anchor.'],
+  anchor:['Project Anchor','Blockchain','Identificativo iniziale del progetto: hash dei dati base, timestamp e legame con le evidenze future. Non genera crediti.'],
+  addParcel:['Aggiungi parcella','Mappa','Mock Leaflet.draw: in produzione abilita disegno poligono, calcolo ha e salvataggio GeoJSON.'],
+  gisImport:['Import GIS','Mappa','Upload .geojson/.shp per importare confini aziendali già disponibili.'],
+  farmHistory:['Storico pratiche','Baseline','Maschera futura per inserire anni, colture, lavorazioni, input, irrigazione e documenti di supporto.'],
+  soilData:['Dati suolo e SOC','Baseline/Evidenze','Caricamento analisi suolo, profondità, repliche per filare e collegamento a evidenze validate.'],
+  xfarm:['Quaderno di campagna xFarm','Fonte esterna','Riquadro espandibile per dati importati: lavorazioni, trattamenti, irrigazioni, fertilizzazioni e link diretto a xFarm.'],
+  bau:['Scenario BAU','Baseline','Editor guidato per descrivere la gestione ordinaria senza progetto e validare addizionalità.'],
+  satellite:['Satellite NDVI','dMRV','Layer Sentinel-2 per vigoria vegetativa, copertura suolo e supporto al monitoraggio. Incertezza dichiarata.'],
+  meteoSource:['Stazione meteo','Fonte dati','Dati meteo contestuali: temperatura, pioggia, umidità e ritardi di trasmissione.'],
+  newEvidence:['Carica nuova evidenza','Evidence hub','Upload file, inserimento dati, geotag, associazione a plot/pratica, generazione hash e invio in review.'],
+  juneTasks:['Attività giugno','Calendario','Registro irrigazione e foto filari nord: entrambe cliccabili per upload o import da fonte esterna.'],
+  permanence:['Piano permanenza','Readiness','Documento per durata pratiche, rischi reversal, monitoraggio pluriennale e responsabilità.'],
+  creditEstimate:['Stima crediti','Calcolo mock','Dettaglio calcolo: 12 ha x coefficiente vigneto x pratiche conservative. Alta incertezza finché baseline incompleta.'],
+  reportPreview:['Preview report','Report','Report navigabile generato dagli step precedenti; i gap rimandano alla schermata corretta.'],
+  contract:['Contratto blockchain','Blockchain','Dettaglio contratto pending su Polygon/pOsti, explorer link e batch evidenze notarizzate.'],
+  exchange:['Exchange readiness','Listing','Controlli owner, doppio conteggio, autorizzazione vendita, registry target, KYC/KYB e marketplace.'],
+  whatIf:['What-if simulator','Co-benefits','Se aggiungi cover crops: carbonio +0,3 tCO2e/ha/anno, acqua -8%, biodiversità da C a B, SOC +0,1% in 3 anni.'],
+  benefits:['Dettaglio co-benefits','Co-benefits','Carbonio, acqua, biodiversità e salute suolo calcolati dagli stessi input MRV senza data entry aggiuntivo.']
+};
+function openPanel(key){const p=panelCopy[key]||['Dettaglio','A-Grid','Contenuto mock.'];document.getElementById('drawerTitle').textContent=p[0];document.getElementById('drawerEyebrow').textContent=p[1];document.getElementById('drawerBody').innerHTML='<p class="lead">'+p[2]+'</p><div class="detail-grid"><div><b>Stato</b><p>Mock interattivo</p></div><div><b>Blockchain</b><p>Hash quando il dato entra in audit trail</p></div></div><div class="mini-actions"><button class="btn">Salva bozza</button><button class="btn secondary">Importa dato</button><button class="btn secondary">Genera hash</button></div>';document.getElementById('drawerBackdrop').classList.add('open');}
+function closePanel(e){if(!e||e.target.id==='drawerBackdrop')document.getElementById('drawerBackdrop').classList.remove('open');}
+const sensors={eddy:['Eddy Tower T1','CO2 flux','-1,8 gC/m2','15 min','Batch 0x8ed2...91aa'],sm01:['Probe SM-01','Soil moisture','23%','15 min','Batch 0x7b31...ad44'],sm02:['Probe SM-02','Soil moisture','21%','15 min','Batch 0x9c20...bb18'],meteo:['Meteo WS-01','Temperature','24,2 C','30 min','Pending: ultimo batch in delay']};
+function openSensor(id){const s=sensors[id];document.getElementById('drawerTitle').textContent=s[0];document.getElementById('drawerEyebrow').textContent='Drill-down sensore';document.getElementById('drawerBody').innerHTML='<p class="lead">Dettaglio progressivo: cosa misura, dati raw, qualità dato e registrazione blockchain.</p><div class="detail-grid"><div><b>Tipo</b><p>'+s[1]+'</p></div><div><b>Ultimo dato</b><p>'+s[2]+'</p></div><div><b>Frequenza</b><p>'+s[3]+'</p></div><div><b>Blockchain</b><p>'+s[4]+'</p></div></div><div class="table raw-table"><div class="row header"><div>ts</div><div>raw</div><div>quality</div><div>hash</div><div>stato</div></div><div class="row"><div>11:15</div><div>'+s[2]+'</div><div>ok</div><div>0xa1...</div><div>notarizzato</div></div><div class="row"><div>11:30</div><div>'+s[2]+'</div><div>ok</div><div>0xa2...</div><div>batch</div></div></div>';document.getElementById('drawerBackdrop').classList.add('open');}
+const evidences={photo:['Foto georeferenziata cover crop','validata','Hash 0xa91f...c21d, timestamp 24/05/2026, geotag presente.'],soil:['Analisi suolo SOC 0-30 cm','review','Profondità parziale: caricare repliche o collegare nuovo campionamento.'],ndvi:['NDVI vigneto maggio','validata','Layer Sentinel usato come supporto, non sostituisce analisi suolo.'],irrigation:['Registro irrigazione','da integrare','Manca upload: carica file, importa da xFarm o inserisci manualmente.']};
+function openEvidence(id){const e=evidences[id];document.getElementById('drawerTitle').textContent=e[0];document.getElementById('drawerEyebrow').textContent='Dettaglio evidenza · '+e[1];document.getElementById('drawerBody').innerHTML='<p class="lead">'+e[2]+'</p><div class="mini-actions"><button class="btn">Carica file</button><button class="btn secondary">Importa da xFarm</button><button class="btn secondary">Collega sensore</button><button class="btn secondary">Genera hash</button></div>';document.getElementById('drawerBackdrop').classList.add('open');}
+function toggleChat(){document.getElementById('chatPanel').classList.toggle('open');}
+function sendChat(){const input=document.getElementById('chatInput'),log=document.getElementById('chatLog');log.innerHTML+='<div class="chat-msg">'+input.value+'</div><div class="chat-msg ai">Per completare la baseline mancano SOC replicato, dati 2023 e piano permanenza. Ti conviene aprire Step 2 per i dati suolo e Step 4 per caricare le evidenze mancanti.</div>';input.value='';}
 </script>
 </body>
 </html>

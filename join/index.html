@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A-Grid — Unisciti alla rete</title>
+  <link rel="stylesheet" href="/assets/mrv.css">
+</head>
+<body>
+<main class="public-shell">
+  <nav class="public-nav">
+    <div class="brand"><div class="logo">AG</div><div><h2>A-GRID</h2><p>MRV network</p></div></div>
+    <div class="actions"><a class="btn secondary" href="/calculator/">Calcolatore</a><a class="btn secondary" href="/">Login demo</a></div>
+  </nav>
+  <section class="hero-band">
+    <div class="eyebrow">Multi-path onboarding</div>
+    <h1>Scegli come entrare nella rete A-Grid</h1>
+    <p class="lead">Quattro percorsi separati per agricoltori, partner tecnici, acquirenti di crediti ed enti pubblici.</p>
+  </section>
+  <div class="grid four" style="grid-template-columns:repeat(4,minmax(0,1fr))">
+    <div class="card clickable" onclick="location.href='/farmer/'"><h2>Agricoltore</h2><p class="lead">Avvia un progetto MRV dai tuoi campi, con sensori, evidenze e readiness CRCF.</p><span class="pill">Inizia</span></div>
+    <div class="card clickable" onclick="openPath('Partner tecnico')"><h2>Partner tecnico</h2><p class="lead">Agronomi, cooperative e consorzi che gestiscono più farmer.</p><span class="pill blue">Diventa partner</span></div>
+    <div class="card clickable" onclick="openPath('Acquirente crediti')"><h2>Acquirente crediti</h2><p class="lead">Aziende che vogliono esplorare crediti verificati e tracciati blockchain.</p><span class="pill amber">Esplora mercato</span></div>
+    <div class="card clickable" onclick="openPath('Ente pubblico')"><h2>Ente pubblico</h2><p class="lead">Monitoraggio territoriale, dati aggregati e compliance CRCF.</p><span class="pill violet">Richiedi accesso</span></div>
+  </div>
+  <div id="pathDetail" class="card" style="margin-top:16px"><h2>Percorso selezionato</h2><p class="lead">Seleziona una card per vedere il form mock dedicato.</p></div>
+</main>
+<script>
+function openPath(title){document.getElementById('pathDetail').innerHTML='<h2>'+title+'</h2><p class="lead">Form contatto mock per raccogliere dati, obiettivo e prossimo step commerciale/operativo.</p><div class="fields"><div class="field"><label>Nome organizzazione</label><input value=""></div><div class="field"><label>Email</label><input value=""></div><div class="field full"><label>Note</label><textarea>Descrivi superficie, ruolo e interesse per A-Grid MRV.</textarea></div></div><button class="btn" style="margin-top:14px">Invia richiesta</button>';}
+</script>
+</body>
+</html>

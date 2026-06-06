@@ -8,6 +8,8 @@ export default defineConfig({
         farmer: 'farmer/index.html',
         admin: 'admin/index.html',
         stakeholder: 'stakeholder/index.html',
+        calculator: 'calculator/index.html',
+        join: 'join/index.html',
       },
     },
   },

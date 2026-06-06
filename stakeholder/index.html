@@ -12,10 +12,13 @@
     <div class="brand"><div class="logo">AG</div><div><h2>A-GRID</h2><p>Stakeholder Portal</p></div></div>
     <div class="nav-title">Read-only</div>
     <nav class="nav" id="nav">
-      <button class="active" data-tab="portfolio">Portfolio</button>
-      <button data-tab="projects">Progetti</button>
+      <button class="active" data-tab="portfolio">Overview</button>
+      <button data-tab="projects">Per progetto</button>
+      <button data-tab="standards">Per standard</button>
+      <button data-tab="blockchain">Blockchain</button>
       <button data-tab="impact">Impatto</button>
       <button data-tab="reports">Report</button>
+      <button data-tab="settings">Impostazioni</button>
     </nav>
     <div class="side-card"><b>Accesso limitato</b><p>Solo KPI aggregati, timeline MRV, evidenze validate e report approvati. Nessun dato raw, documento interno o sensore live.</p></div>
     <div class="side-card"><b>Portfolio</b><p>Italia, Spagna, UAE e Kenya in pipeline. Valori e crediti sono mock demo.</p></div>
@@ -30,14 +33,28 @@
       <div class="grid kpis">
         <div class="card kpi"><div class="label">Totale progetti</div><div class="value">6</div><div class="sub">4 attivi · 2 pipeline</div></div>
         <div class="card kpi"><div class="label">Superficie gestita</div><div class="value">1.592 ha</div><div class="sub">agricoltura e agroforestazione</div></div>
-        <div class="card kpi"><div class="label">Crediti generati</div><div class="value">0</div><div class="sub">4.820 tCO2e stimati</div></div>
-        <div class="card kpi"><div class="label">Valore stimato</div><div class="value">€241k</div><div class="sub">portfolio potenziale mock</div></div>
+        <div class="card kpi"><div class="label">Farmer attivi</div><div class="value">12</div><div class="sub">Italia, Spagna, UAE</div></div>
+        <div class="card kpi"><div class="label">Crediti verificati</div><div class="value">0</div><div class="sub">4.820 tCO2e stimati</div></div>
       </div>
       <div class="grid two">
         <div class="card"><h2>Distribuzione colture</h2><p class="lead">Ripartizione portfolio per tipologia agricola.</p><div class="chart-box"><canvas id="cropChart"></canvas></div></div>
         <div class="card"><h2>Crediti stimati per progetto</h2><p class="lead">Stime preliminari, non crediti emessi.</p><div class="chart-box"><canvas id="creditChart"></canvas></div></div>
       </div>
       <div class="card" style="margin-top:16px"><h2>Mappa portfolio</h2><p class="lead">Pin demo sui progetti e pipeline geografiche.</p><div class="portfolio-map"><span class="pin it" title="Italia"></span><span class="pin es" title="Spagna"></span><span class="pin ae" title="UAE"></span><span class="pin ke" title="Kenya"></span></div></div>
+    </section>
+
+    <section id="standards" class="section">
+      <h2>Per standard</h2><p class="lead">Breakdown read-only per protocollo target.</p>
+      <div class="grid three"><div class="card"><h2>CRCF</h2><p class="lead">2 progetti, readiness media 52%, gap principali su SOC replicato e permanenza.</p><span class="pill amber">EU focus</span></div><div class="card"><h2>Verra VCS</h2><p class="lead">1 progetto in pipeline, baseline ancora da strutturare.</p><span class="pill blue">pipeline</span></div><div class="card"><h2>Gold Standard</h2><p class="lead">Nessun progetto attivo, template disponibile per futuri pilot.</p><span class="pill violet">template</span></div></div>
+    </section>
+
+    <section id="blockchain" class="section">
+      <h2>Blockchain</h2><p class="lead">Transazioni pOsti/Polygon visibili solo come audit trail aggregato.</p>
+      <div class="table"><div class="row header"><div>Evento</div><div>Progetto</div><div>Hash</div><div>Stato</div><div>Explorer</div></div>
+        <div class="row"><div>Project Anchor</div><div>Vigna Trebotti</div><div class="mono">0x9e31...f04b</div><div><span class="pill">notarizzato</span></div><div>mock</div></div>
+        <div class="row"><div>Evidence root</div><div>UAE Date Farms</div><div class="mono">0x7f2a...c91e</div><div><span class="pill">notarizzato</span></div><div>mock</div></div>
+        <div class="row"><div>Credit NFT</div><div>-</div><div class="mono">pending</div><div><span class="pill red">0 mintati</span></div><div>-</div></div>
+      </div>
     </section>
 
     <section id="projects" class="section">
@@ -68,6 +85,11 @@
         <div class="card"><h2>Audit Log Extract</h2><p class="lead">Eventi blockchain/pOsti esportabili per due diligence.</p><span class="pill blue">read-only</span></div>
       </div>
     </section>
+
+    <section id="settings" class="section">
+      <h2>Impostazioni</h2><p class="lead">Gestione accessi stakeholder in sola lettura.</p>
+      <div class="grid two"><div class="card"><h2>Permessi</h2><p class="lead">Accesso a KPI aggregati, evidenze validate e report approvati. Nessun dato raw o modifica operativa.</p><span class="pill">read-only</span></div><div class="card"><h2>Export</h2><p class="lead">PDF ed Excel aggregati per due diligence, senza documenti interni del farmer.</p><span class="pill blue">mock</span></div></div>
+    </section>
   </main>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -81,10 +103,10 @@ const projects={
   eu:['EU CRCF Placeholder','draft','340 ha','940 tCO2e','31%','Progetto in intake con protocollo CRCF target. Mancano dati storici e piano permanenza.'],
   agro:['Agroforestry Pilot','gap dati','80 ha','260 tCO2e','24%','Area identificata, anchor pending. Evidenze catastali e baseline ancora incomplete.']
 };
-function showProject(id){const p=projects[id];document.getElementById('projectDetail').innerHTML='<h2>'+p[0]+'</h2><div class="grid three"><div><b>Stato</b><p>'+p[1]+'</p></div><div><b>Superficie</b><p>'+p[2]+'</p></div><div><b>Crediti stimati</b><p>'+p[3]+'</p></div></div><p class="footer-note">'+p[5]+'</p><span class="pill amber">Readiness '+p[4]+'</span>';go('projects');}
+function showProject(id,navigate=true){const p=projects[id];document.getElementById('projectDetail').innerHTML='<h2>'+p[0]+'</h2><div class="grid three"><div><b>Stato</b><p>'+p[1]+'</p></div><div><b>Superficie</b><p>'+p[2]+'</p></div><div><b>Crediti stimati</b><p>'+p[3]+'</p></div></div><p class="footer-note">'+p[5]+'</p><span class="pill amber">Readiness '+p[4]+'</span>';if(navigate)go('projects');}
 new Chart(document.getElementById('cropChart'),{type:'doughnut',data:{labels:['Vigneto','Date farm','Crop','Agroforestale'],datasets:[{data:[12,820,600,160],backgroundColor:['#7fa35a','#d78f2f','#2f6f7e','#173d2b']}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom'}}}});
 new Chart(document.getElementById('creditChart'),{type:'bar',data:{labels:['Trebotti','UAE','EU','Agro'],datasets:[{label:'tCO2e stimati',data:[38,3120,940,260],backgroundColor:'#7fa35a'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{grid:{color:'#eadfcd'}},x:{grid:{display:false}}}}});
-showProject('uae');
+showProject('uae',false);
 const initial=location.hash.slice(1);if(initial&&document.getElementById(initial))go(initial);
 </script>
 </body>

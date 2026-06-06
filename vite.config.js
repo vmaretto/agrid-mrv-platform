@@ -10,6 +10,7 @@ export default defineConfig({
         stakeholder: 'stakeholder/index.html',
         calculator: 'calculator/index.html',
         join: 'join/index.html',
+        guide: 'guide/index.html',
       },
     },
   },

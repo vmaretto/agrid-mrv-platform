@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A-Grid MRV — Guida operativa</title>
+  <link rel="stylesheet" href="/assets/mrv.css">
+</head>
+<body>
+<div class="app">
+  <aside class="side">
+    <div class="brand"><div class="logo">AG</div><div><h2>A-GRID</h2><p>Guida operativa MRV</p></div></div>
+    <div class="nav-title">Percorso farmer</div>
+    <nav class="nav">
+      <a href="#overview">Visione generale</a>
+      <a href="#step-1">1. Identità progetto</a>
+      <a href="#step-2">2. Baseline</a>
+      <a href="#step-3">3. Sensori e dati</a>
+      <a href="#step-4">4. Evidence hub</a>
+      <a href="#step-5">5. Report readiness</a>
+      <a href="#step-6">6. Credito blockchain</a>
+      <a href="#step-7">7. Exchange readiness</a>
+      <a href="#glossary">Glossario</a>
+    </nav>
+    <div class="side-card"><b>Come usarla</b><p>Ogni sezione spiega cosa supporta lo step, quali dati mostra, cosa deve fare l'utente e dove cliccare nella demo.</p></div>
+  </aside>
+  <main class="content">
+    <div class="top" id="overview">
+      <div><div class="eyebrow">Guida utente</div><h1>Come usare A-Grid MRV passo dopo passo</h1><p>Guida operativa per farmer e team demo: dal Project Anchor alla baseline, dai sensori alle evidenze, fino a readiness, credito ed exchange readiness.</p></div>
+      <div class="actions"><a class="btn secondary" href="/">Login</a><a class="btn" href="/farmer/">Apri demo farmer</a></div>
+    </div>
+
+    <div class="grid kpis">
+      <div class="card kpi"><div class="label">Processo</div><div class="value">7 step</div><div class="sub">MRV + credito + exchange</div></div>
+      <div class="card kpi"><div class="label">Principio</div><div class="value">MRV first</div><div class="sub">nessun credito automatico</div></div>
+      <div class="card kpi"><div class="label">Tracciabilità</div><div class="value">Hash</div><div class="sub">anchor, evidenze, batch dati</div></div>
+      <div class="card kpi"><div class="label">Stato demo</div><div class="value">42%</div><div class="sub">readiness parziale</div></div>
+    </div>
+
+    <section class="card" style="margin-bottom:16px">
+      <h2>Logica del processo</h2>
+      <p class="lead">A-Grid MRV non parte dal mercato dei crediti. Parte dalla raccolta ordinata dei dati: identità progetto, baseline, sensori, evidenze e report. Solo se il progetto raggiunge una readiness sufficiente può passare alla fase credito. Solo dopo un credito validato può essere valutata l'exchange readiness.</p>
+      <div class="timeline">
+        <div class="phase"><div class="phase-head"><h3>Dato o documento</h3><span class="pill blue">input</span></div><p>Il farmer inserisce, carica o collega dati da fonti esterne.</p></div>
+        <div class="phase"><div class="phase-head"><h3>Evidenza verificabile</h3><span class="pill">MRV</span></div><p>Il dato entra nel processo con stato, hash, timestamp e revisione.</p></div>
+        <div class="phase"><div class="phase-head"><h3>Report e readiness</h3><span class="pill amber">controllo</span></div><p>La piattaforma mostra cosa e pronto e cosa manca.</p></div>
+        <div class="phase"><div class="phase-head"><h3>Credito ed exchange</h3><span class="pill red">solo se validato</span></div><p>Credito e listing restano bloccati finche non sono soddisfatti i requisiti.</p></div>
+      </div>
+    </section>
+
+    <section id="step-1" class="card" style="margin-bottom:16px">
+      <div class="phase-head"><h2>Step 1 — Identità progetto</h2><a class="btn secondary" href="/farmer/#step-1">Apri step</a></div>
+      <p class="lead">Serve a creare l'anagrafica del progetto e il Project Anchor. E il punto di nascita digitale del progetto MRV.</p>
+      <div class="grid three">
+        <div><b>Dati principali</b><p class="footer-note">Nome progetto, ubicazione, coltura, superficie, protocollo target, documenti catastali.</p></div>
+        <div><b>Project Anchor</b><p class="footer-note">Hash e timestamp che dimostrano che il progetto esisteva in quella data con quei dati base.</p></div>
+        <div><b>Azioni utente</b><p class="footer-note">Verificare dati, caricare documenti, controllare mappa e confermare anchor.</p></div>
+      </div>
+      <p class="footer-note"><b>Importante:</b> il Project Anchor non genera crediti. Apre l'audit trail del progetto.</p>
+    </section>
+
+    <section id="step-2" class="card" style="margin-bottom:16px">
+      <div class="phase-head"><h2>Step 2 — Baseline e addizionalità</h2><a class="btn secondary" href="/farmer/#step-2">Apri step</a></div>
+      <p class="lead">Serve a descrivere come il terreno veniva gestito prima del progetto. Senza baseline non si puo dimostrare un miglioramento reale.</p>
+      <div class="table"><div class="row header"><div>Elemento</div><div>Cosa significa</div><div>Azione</div><div>Se manca</div><div>Fonte</div></div>
+        <div class="row"><div>Storico pratiche</div><div>Colture, lavorazioni, input, irrigazione per anno.</div><div>Verificare o inserire.</div><div>Gap baseline.</div><div>Farmer/xFarm</div></div>
+        <div class="row"><div>SOC iniziale</div><div>Carbonio organico del suolo di partenza.</div><div>Caricare analisi.</div><div>Readiness bloccata.</div><div>Laboratorio</div></div>
+        <div class="row"><div>Scenario BAU</div><div>Gestione ordinaria senza progetto.</div><div>Validare testo.</div><div>Addizionalità debole.</div><div>AI + farmer</div></div>
+        <div class="row"><div>Quaderno xFarm</div><div>Fonte esterna di lavorazioni e registri campo.</div><div>Aprire dettaglio o collegare.</div><div>Inserimento manuale.</div><div>API/mock</div></div>
+      </div>
+    </section>
+
+    <section id="step-3" class="card" style="margin-bottom:16px">
+      <div class="phase-head"><h2>Step 3 — Sensori e acquisizione dati</h2><a class="btn secondary" href="/farmer/#step-3">Apri step</a></div>
+      <p class="lead">Serve a controllare i dati di campo: sensori IoT di prima mano, fonti terze, satellite e meteo.</p>
+      <div class="grid two">
+        <div class="phase"><h3>Drill-down sensore</h3><p>Ogni sensore deve essere cliccabile: dettaglio misura, ultimo dato, storico raw, frequenza, qualita dato, gap e batch blockchain.</p></div>
+        <div class="phase"><h3>IoT + satellite</h3><p>I sensori sono fonte primaria. Satellite NDVI, meteo e xFarm integrano il dato e coprono aree dove il sensore non basta.</p></div>
+      </div>
+    </section>
+
+    <section id="step-4" class="card" style="margin-bottom:16px">
+      <div class="phase-head"><h2>Step 4 — Monitoring e evidence hub</h2><a class="btn secondary" href="/farmer/#step-4">Apri step</a></div>
+      <p class="lead">Evidence hub significa archivio operativo delle prove MRV: foto, documenti, analisi, NDVI, registri, dati sensore e attivita di monitoraggio.</p>
+      <div class="grid three">
+        <div><b>Validata</b><p class="footer-note">Evidenza controllata, con hash e pronta per il report.</p></div>
+        <div><b>Review</b><p class="footer-note">Evidenza presente ma da controllare o completare.</p></div>
+        <div><b>Da integrare</b><p class="footer-note">Manca upload, dato, geotag, fonte esterna o revisione.</p></div>
+      </div>
+      <p class="footer-note">Ogni evidenza deve essere cliccabile. Le evidenze mancanti devono permettere upload, inserimento manuale o import da xFarm, sensore o satellite.</p>
+    </section>
+
+    <section id="step-5" class="card" style="margin-bottom:16px">
+      <div class="phase-head"><h2>Step 5 — Report e standard readiness</h2><a class="btn secondary" href="/farmer/#step-5">Apri step</a></div>
+      <p class="lead">E una dashboard di controllo. Mostra quanto il progetto e pronto rispetto al protocollo e rimanda ai punti da completare.</p>
+      <div class="timeline">
+        <div class="phase"><div class="phase-head"><h3>Baseline parziale</h3><span class="pill amber">torna Step 2</span></div><p>Completare storico, SOC e scenario BAU.</p></div>
+        <div class="phase"><div class="phase-head"><h3>Evidenze insufficienti</h3><span class="pill amber">torna Step 4</span></div><p>Caricare o validare le evidenze mancanti.</p></div>
+        <div class="phase"><div class="phase-head"><h3>Piano permanenza</h3><span class="pill red">apri dettaglio</span></div><p>Descrivere durata pratiche, rischi reversal e monitoraggio nel tempo.</p></div>
+      </div>
+    </section>
+
+    <section id="step-6" class="card" style="margin-bottom:16px">
+      <div class="phase-head"><h2>Step 6 — Credito e blockchain</h2><a class="btn secondary" href="/farmer/#step-6">Apri step</a></div>
+      <p class="lead">Questo step riguarda la preparazione o generazione del credito dopo readiness e validazione. Non riguarda ancora la vendita.</p>
+      <div class="grid two">
+        <div class="phase"><h3>Stato credito</h3><p>Con readiness 42% il credito resta in attesa. Nessun token, nessun seriale e nessun credito vendibile.</p></div>
+        <div class="phase"><h3>Contratto blockchain</h3><p>Mostra contratto, hash, explorer e batch solo dopo approvazione. Prima resta pending/mock.</p></div>
+      </div>
+    </section>
+
+    <section id="step-7" class="card" style="margin-bottom:16px">
+      <div class="phase-head"><h2>Step 7 — Exchange readiness</h2><a class="btn secondary" href="/farmer/#step-7">Apri step</a></div>
+      <p class="lead">Step separato per verificare se un credito validato puo essere listato, venduto o scambiato.</p>
+      <div class="grid three">
+        <div><b>Prerequisito</b><p class="footer-note">Credito generato e validato nello Step 6.</p></div>
+        <div><b>Controlli</b><p class="footer-note">Owner, doppio conteggio, autorizzazione vendita, registry target, KYC/KYB.</p></div>
+        <div><b>Stati</b><p class="footer-note">Non ready, in review, exchange ready, listed.</p></div>
+      </div>
+    </section>
+
+    <section id="glossary" class="card">
+      <h2>Glossario rapido</h2>
+      <div class="grid three">
+        <div><b>MRV</b><p class="footer-note">Measurement, Reporting and Verification: misurare, rendicontare e verificare.</p></div>
+        <div><b>SOC</b><p class="footer-note">Soil Organic Carbon, carbonio organico del suolo.</p></div>
+        <div><b>BAU</b><p class="footer-note">Business As Usual, scenario ordinario senza progetto.</p></div>
+        <div><b>Hash</b><p class="footer-note">Impronta digitale di un dato o file, utile a verificare modifiche.</p></div>
+        <div><b>Readiness</b><p class="footer-note">Livello di completezza tecnica e documentale verso uno standard.</p></div>
+        <div><b>Exchange ready</b><p class="footer-note">Credito pronto per listing o scambio, dopo validazione e controlli commerciali/legali.</p></div>
+      </div>
+    </section>
+  </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A-Grid — Guide e documenti</title>
+  <link rel="stylesheet" href="/assets/mrv.css">
+</head>
+<body>
+<main class="public-shell">
+  <nav class="public-nav"><div class="brand"><div class="logo">AG</div><div><h2>A-GRID</h2><p>Guide e documenti</p></div></div><div class="actions"><a class="btn secondary" href="/app/new-project.html">Nuovo progetto</a><a class="btn secondary" href="/app/crcf.html">CRCF</a></div></nav>
+  <section class="hero-band"><div class="eyebrow">Sprint 1 · F15</div><h1>Guide e documenti</h1><p class="lead">Risorse scaricabili e documenti da leggere prima di completare onboarding e compliance.</p></section>
+  <section class="card">
+    <div class="doc-row"><div class="pdf-icon">PDF</div><div><b>Guida alle pratiche rigenerative</b><p class="footer-note">No-till, cover crops, compost, residui e agroforestry.</p></div><span class="pill amber">Da leggere</span><button class="btn secondary" onclick="markRead(this)">Scarica</button></div>
+    <div class="doc-row"><div class="pdf-icon">PDF</div><div><b>Come funziona il buffer pool</b><p class="footer-note">Escrow on-chain, permanenza, rilascio progressivo.</p></div><span class="pill amber">Da leggere</span><button class="btn secondary" onclick="markRead(this)">Scarica</button></div>
+    <div class="doc-row"><div class="pdf-icon">PDF</div><div><b>Termini e condizioni A-Grid</b><p class="footer-note">Programma MRV, responsabilita e uscita trasparente.</p></div><span class="pill">Letto</span><button class="btn secondary">Scarica</button></div>
+    <div class="doc-row"><div class="pdf-icon">PDF</div><div><b>Best practices monitoraggio IoT</b><p class="footer-note">Posizionamento sensori, manutenzione e diagnostica.</p></div><span class="pill blue">Tecnico</span><button class="btn secondary">Scarica</button></div>
+  </section>
+</main>
+<script>function markRead(btn){btn.parentElement.querySelector('.pill').textContent='Letto';btn.parentElement.querySelector('.pill').className='pill';}</script>
+</body>
+</html>

@@ -3,64 +3,81 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>A-Grid — Calcolatore crediti carbonio</title>
+  <title>A-Grid — Calcola i tuoi crediti carbonio</title>
   <link rel="stylesheet" href="/assets/mrv.css">
 </head>
 <body>
 <main class="public-shell">
   <nav class="public-nav">
-    <div class="brand"><div class="logo">AG</div><div><h2>A-GRID</h2><p>Carbon farming calculator</p></div></div>
-    <div class="actions"><a class="btn secondary" href="/">Login demo</a><a class="btn" href="/join/">Unisciti alla rete</a></div>
+    <div class="brand"><div class="logo">AG</div><div><h2>A-GRID</h2><p>Earnings calculator</p></div></div>
+    <div class="actions"><a class="btn secondary" href="/onboarding/">Onboarding</a><a class="btn secondary" href="/guide/">Guida</a><a class="btn" href="/app/new-project.html">Registra progetto</a></div>
   </nav>
+
   <section class="hero-band">
-    <div class="eyebrow">Earnings calculator</div>
-    <h1>Stima indicativa dei crediti carbonio della tua azienda</h1>
-    <p class="lead">Inserisci superficie, coltura e pratiche. Il calcolo è dimostrativo e richiede verifica sul campo con sensori IoT, satellite e audit MRV.</p>
+    <div class="eyebrow">Sprint 1 · F1</div>
+    <h1>Calcola i tuoi crediti carbonio</h1>
+    <p class="lead">Confronta pratiche attuali e future. La stima si aggiorna in tempo reale ed e indicativa: il calcolo esatto richiede baseline, IoT, satellite, evidenze e validazione MRV.</p>
   </section>
 
-  <div class="wizard-tabs">
-    <button class="wizard-tab active" data-calc-step="1">1. Azienda</button>
-    <button class="wizard-tab" data-calc-step="2">2. Pratiche</button>
-    <button class="wizard-tab" data-calc-step="3">3. Stima</button>
-  </div>
-
-  <section id="calc-1" class="section active">
-    <div class="card"><h2>La tua azienda</h2><div class="fields">
-      <div class="field"><label>Regione / provincia</label><select id="region"><option>Lazio</option><option>Toscana</option><option>Emilia-Romagna</option><option>Puglia</option><option>Veneto</option><option>Sicilia</option></select></div>
-      <div class="field"><label>Superficie totale (ha)</label><input id="hectares" type="number" value="50" min="1"></div>
-      <div class="field"><label>Coltura principale</label><select id="crop"><option>vite</option><option>cereali</option><option>olivo</option><option>orticole</option><option>foraggere</option><option>misto</option></select></div>
-      <div class="field"><label>Tipo suolo</label><select id="soil"><option>misto</option><option>argilloso</option><option>sabbioso</option><option>limoso</option></select></div>
-    </div><button class="btn" style="margin-top:14px" onclick="showCalc(2)">Continua</button></div>
-  </section>
-
-  <section id="calc-2" class="section">
-    <div class="card"><h2>Le tue pratiche</h2><p class="lead">Attiva le pratiche già adottate o pianificate.</p>
-      <div class="check-list">
-        <label class="check-row"><span>Minima lavorazione / No-till</span><input class="toggle practice" type="checkbox" value="no_till" checked></label>
-        <label class="check-row"><span>Cover crops invernali</span><input class="toggle practice" type="checkbox" value="cover_crops" checked></label>
-        <label class="check-row"><span>Rotazione colturale (almeno 3 colture)</span><input class="toggle practice" type="checkbox" value="crop_rotation"></label>
-        <label class="check-row"><span>Fertilizzazione organica</span><input class="toggle practice" type="checkbox" value="organic_fert" checked></label>
-        <label class="check-row"><span>Residui colturali lasciati in campo</span><input class="toggle practice" type="checkbox" value="mulching"></label>
-        <label class="check-row"><span>Agroforestry / siepi campestri</span><input class="toggle practice" type="checkbox" value="agroforestry"></label>
-        <label class="check-row"><span>Gestione acque efficiente</span><input class="toggle practice" type="checkbox" value="water_mgmt"></label>
+  <div class="grid two" style="grid-template-columns:minmax(0,1fr) 320px">
+    <section class="grid">
+      <div class="card">
+        <h2>Dati azienda</h2>
+        <div class="fields">
+          <div class="field"><label>Superficie <span class="tooltip" data-tip="Ettari oggetto del progetto carbon farming.">i</span></label><input id="hectares" type="number" value="100" min="1"></div>
+          <div class="field"><label>Coltura</label><select id="crop"><option value="seminativo">Seminativo</option><option value="vite">Vite</option><option value="olivo">Olivo</option><option value="foraggere">Foraggere</option><option value="misto">Misto</option></select></div>
+          <div class="field"><label>Prezzo medio credito</label><input id="price" type="number" value="35" min="1"></div>
+          <div class="field"><label>Standard target</label><select id="standard"><option>CRCF</option><option>Verra VCS VM0042</option><option>Gold Standard</option></select></div>
+        </div>
       </div>
-      <div class="mini-actions"><button class="btn secondary" onclick="showCalc(1)">Indietro</button><button class="btn" onclick="calculate();showCalc(3)">Calcola stima</button></div>
-    </div>
-  </section>
 
-  <section id="calc-3" class="section">
-    <div class="grid two">
-      <div class="card"><h2>Stima crediti annui</h2><p class="result-number" id="credits">-</p><p class="lead">crediti carbonio / anno</p><p class="result-number" id="earnings">-</p><p class="lead">equivalente economico indicativo / anno</p><div id="basis" class="footer-note"></div><div class="mini-actions"><a class="btn" href="/farmer/">Registrati per un calcolo esatto</a><button class="btn secondary" onclick="window.print()">Scarica report PDF</button></div></div>
-      <div class="card"><h2>Disclaimer</h2><p class="lead">Stima indicativa. Il calcolo esatto richiede verifica sul campo con sensori IoT, dati dMRV satellitari, analisi suolo, baseline e validazione metodologica. Nessuna promessa di credito o rendimento finanziario.</p><button class="btn secondary" onclick="showCalc(2)">Modifica pratiche</button></div>
-    </div>
-  </section>
+      <div class="practice-table">
+        <div class="card">
+          <h2>Pratiche attuali</h2>
+          <div class="fields">
+            <div class="field full"><label>Lavorazione</label><select id="currentTillage"><option value="conventional">Convenzionale</option><option value="reduced">Minima lavorazione</option><option value="no_till">No-till</option></select></div>
+            <label class="check-row"><span>Cover crops</span><input id="currentCover" class="toggle" type="checkbox"></label>
+            <label class="check-row"><span>Compost/Biochar</span><input id="currentCompost" class="toggle" type="checkbox"></label>
+            <label class="check-row"><span>Residui in campo</span><input id="currentResidues" class="toggle" type="checkbox"></label>
+          </div>
+        </div>
+        <div class="card">
+          <h2>Pratiche future</h2>
+          <div class="fields">
+            <div class="field full"><label>Lavorazione</label><select id="futureTillage"><option value="conventional">Convenzionale</option><option value="reduced" selected>Minima lavorazione</option><option value="no_till">No-till</option></select></div>
+            <label class="check-row"><span>Cover crops</span><input id="futureCover" class="toggle" type="checkbox" checked></label>
+            <label class="check-row"><span>Compost/Biochar</span><input id="futureCompost" class="toggle" type="checkbox" checked></label>
+            <label class="check-row"><span>Residui in campo</span><input id="futureResidues" class="toggle" type="checkbox" checked></label>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Come viene calcolato</h2>
+        <p class="lead">Il mock usa coefficienti semplificati tCO2e/ha/anno per il delta tra pratiche attuali e future. In produzione il calcolo viene validato lato server e confrontato con baseline SOC, IoT, satellite e compliance CRCF.</p>
+      </div>
+    </section>
+
+    <aside class="card summary-sticky">
+      <div class="eyebrow">Risultato live</div>
+      <h2>Summary</h2>
+      <p class="result-number" id="credits">0</p><p class="lead">tCO2e / anno stimati</p>
+      <div class="payment-row"><span>Prezzo medio</span><b id="priceOut">35 EUR</b></div>
+      <div class="payment-row"><span>Revenue annuale</span><b id="revenue">0 EUR</b></div>
+      <div class="payment-row"><span>Revenue per ha</span><b id="perHa">0 EUR/ha</b></div>
+      <div class="payment-row"><span>Removals/reductions</span><b id="changes">0</b></div>
+      <p class="footer-note">Nessuna promessa di credito o rendimento. Serve progetto MRV completo.</p>
+      <div class="mini-actions"><a class="btn" href="/app/new-project.html">Registra progetto</a><button class="btn secondary" onclick="window.print()">Scarica PDF</button></div>
+    </aside>
+  </div>
 </main>
 <script>
-const FACTORS={no_till:{min:.3,max:.8},cover_crops:{min:.2,max:.5},crop_rotation:{min:.1,max:.3},organic_fert:{min:.15,max:.4},mulching:{min:.1,max:.25},agroforestry:{min:.5,max:1.5},water_mgmt:{min:.05,max:.15}}, PRICE={min:25,max:35};
-function showCalc(n){document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active',s.id==='calc-'+n));document.querySelectorAll('.wizard-tab').forEach(b=>b.classList.toggle('active',b.dataset.calcStep==n));}
-document.querySelectorAll('.wizard-tab').forEach(b=>b.onclick=()=>{if(b.dataset.calcStep==3)calculate();showCalc(Number(b.dataset.calcStep));});
-function calculate(){const ha=Number(document.getElementById('hectares').value)||0, active=[...document.querySelectorAll('.practice:checked')].map(i=>i.value);let min=0,max=0;active.forEach(k=>{min+=FACTORS[k].min;max+=FACTORS[k].max;});const cmin=Math.round(min*ha), cmax=Math.round(max*ha), emin=Math.round(cmin*PRICE.min), emax=Math.round(cmax*PRICE.max);document.getElementById('credits').textContent=cmin+' - '+cmax;document.getElementById('earnings').textContent='€'+emin+' - €'+emax;document.getElementById('basis').innerHTML='Basato su '+ha+' ha, '+active.length+' pratiche attive, prezzo medio €25-35/credito, standard CRCF / Verra VCS.';}
-calculate();
+const coeff={seminativo:1.33,vite:.62,olivo:.55,foraggere:.9,misto:.75};
+const tillageScore={conventional:0,reduced:.35,no_till:.7};
+function practiceScore(prefix){let score=tillageScore[document.getElementById(prefix+'Tillage').value];score+=document.getElementById(prefix+'Cover').checked?.35:0;score+=document.getElementById(prefix+'Compost').checked?.25:0;score+=document.getElementById(prefix+'Residues').checked?.18:0;return score;}
+function calc(){const ha=Number(hectares.value)||0, price=Number(document.getElementById('price').value)||35, crop=document.getElementById('crop').value;const delta=Math.max(0,practiceScore('future')-practiceScore('current'));const credits=Math.round(ha*coeff[crop]*delta);const revenue=credits*price;document.getElementById('credits').textContent=credits.toLocaleString('it-IT');document.getElementById('priceOut').textContent=price.toLocaleString('it-IT')+' EUR';document.getElementById('revenue').textContent=revenue.toLocaleString('it-IT')+' EUR';document.getElementById('perHa').textContent=(ha?revenue/ha:0).toFixed(2).replace('.',',')+' EUR/ha';document.getElementById('changes').textContent=Math.round(delta*3);}
+document.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',calc));
+calc();
 </script>
 </body>
 </html>

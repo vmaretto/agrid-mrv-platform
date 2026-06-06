@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A-Grid — Nuovo progetto</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="/assets/mrv.css">
+</head>
+<body>
+<div id="saveState" class="save-state">Salvato</div>
+<main class="public-shell">
+  <nav class="public-nav">
+    <div class="brand"><div class="logo">AG</div><div><h2>A-GRID</h2><p>Wizard progetto</p></div></div>
+    <div class="actions"><a class="btn secondary" href="/app/guides.html">Guide</a><a class="btn secondary" href="/app/crcf.html">CRCF</a><a class="btn" href="/farmer/">Dashboard farmer</a></div>
+  </nav>
+  <section class="hero-band">
+    <div class="eyebrow">Sprint 1 · F13</div>
+    <h1>Registra un nuovo progetto MRV</h1>
+    <p class="lead">Wizard a 5 step con auto-save locale, tooltip informativi e riepilogo finale.</p>
+  </section>
+  <div class="stepper" id="stepper"></div>
+  <section class="grid two">
+    <div class="card" id="wizardBody"></div>
+    <aside class="card summary-sticky"><h2>Riepilogo live</h2><div id="summary"></div><div class="mini-actions"><button class="btn secondary" onclick="prev()">Indietro</button><button class="btn" onclick="next()">Avanti</button></div></aside>
+  </section>
+</main>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+let step=1;const data=JSON.parse(localStorage.getItem('agridProjectDraft')||'{}');const labels=['Dati progetto','Dati azienda','Pratiche','Sensori IoT','Riepilogo'];
+function field(name,label,value='',type='text',tip=''){return '<div class="field"><label>'+label+(tip?'<span class="tooltip" data-tip="'+tip+'">i</span>':'')+'</label><input data-save="'+name+'" type="'+type+'" value="'+(data[name]||value)+'"></div>'}
+function render(){document.getElementById('stepper').innerHTML=labels.map((l,i)=>'<div class="step-dot '+(i+1===step?'active':i+1<step?'done':'')+'" onclick="step='+(i+1)+';render()">'+(i+1)+'<br>'+l+'</div>').join('');let html='';if(step===1)html='<h2>Step 1 — Dati progetto</h2><div class="fields">'+field('projectName','Nome progetto','Vigna Trebotti','text','Nome usato in report, anchor e audit trail.')+field('standard','Standard target','CRCF','text')+field('period','Monitoring period','5 anni','text')+'<div class="field full"><label>Descrizione</label><textarea data-save="description">'+(data.description||'Carbon Farming Pilot su vigneto Sangiovese nel Lazio.')+'</textarea></div></div>';if(step===2)html='<h2>Step 2 — Dati azienda</h2><div class="fields">'+field('farmName','Nome azienda','Trebotti')+field('owner','Titolare','Marco Trebotti')+field('area','Superficie totale','12','number')+field('region','Regione','Lazio')+'<div class="field full"><label>Coordinate centro azienda</label><input data-save="coords" value="'+(data.coords||'42.36, 12.18')+'"></div></div>';if(step===3)html='<h2>Step 3 — Pratiche rigenerative</h2><div class="check-list"><label class="check-row">No-till / minimum till <input data-save="noTill" class="toggle" type="checkbox" checked></label><label class="check-row">Cover crops <input data-save="cover" class="toggle" type="checkbox" checked></label><label class="check-row">Compost/Biochar <input data-save="compost" class="toggle" type="checkbox"></label><label class="check-row">Agroforestry <input data-save="agro" class="toggle" type="checkbox"></label><label class="check-row">Gestione residui <input data-save="residues" class="toggle" type="checkbox" checked></label></div>';if(step===4)html='<h2>Step 4 — Sensori IoT</h2><div class="fields">'+field('sensorCount','Quanti sensori','4','number')+'<div class="field full"><label>Tipi sensore</label><input data-save="sensorTypes" value="'+(data.sensorTypes||'umidita, temperatura, CO2, pH')+'"></div></div><div id="miniMap" class="map" style="margin-top:12px"></div><button class="btn secondary" style="margin-top:12px">Richiedi installazione A-Grid</button>';if(step===5)html='<h2>Step 5 — Riepilogo & conferma</h2><p class="lead">Stima preliminare: 38 tCO2e potenziali. Project Anchor creato dopo conferma.</p><label class="check-row">Accetto termini e condizioni <input class="toggle" type="checkbox"></label><button class="btn" style="margin-top:14px" onclick="submitProject()">Registra progetto</button>';document.getElementById('wizardBody').innerHTML=html;bind();summary();if(step===4)setTimeout(initMiniMap,0);}
+function bind(){document.querySelectorAll('[data-save]').forEach(el=>el.oninput=()=>{data[el.dataset.save]=el.type==='checkbox'?el.checked:el.value;localStorage.setItem('agridProjectDraft',JSON.stringify(data));document.getElementById('saveState').classList.add('show');setTimeout(()=>document.getElementById('saveState').classList.remove('show'),1200);summary();});}
+function summary(){document.getElementById('summary').innerHTML='<p><b>Progetto</b><br>'+(data.projectName||'Vigna Trebotti')+'</p><p><b>Standard</b><br>'+(data.standard||'CRCF')+'</p><p><b>Azienda</b><br>'+(data.farmName||'Trebotti')+'</p><p><b>Area</b><br>'+(data.area||'12')+' ha</p><p><b>Step completato</b><br>'+step+'/5</p>';}
+function next(){step=Math.min(5,step+1);render()}function prev(){step=Math.max(1,step-1);render()}
+function submitProject(){alert('Progetto demo registrato');}
+function initMiniMap(){const m=L.map('miniMap',{scrollWheelZoom:false}).setView([42.36,12.18],13);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(m);L.marker([42.36,12.18]).addTo(m).bindPopup('Centro azienda');}
+render();
+</script>
+</body>
+</html>

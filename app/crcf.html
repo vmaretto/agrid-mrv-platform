@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A-Grid — Compliance CRCF</title>
+  <link rel="stylesheet" href="/assets/mrv.css">
+</head>
+<body>
+<main class="public-shell">
+  <nav class="public-nav"><div class="brand"><div class="logo">AG</div><div><h2>A-GRID</h2><p>CRCF EU 2024/3012</p></div></div><div class="actions"><a class="btn secondary" href="/app/new-project.html">Nuovo progetto</a><a class="btn secondary" href="/app/guides.html">Guide</a></div></nav>
+  <section class="hero-band"><div class="eyebrow">Sprint 1 · F17</div><h1>Compliance CRCF</h1><p class="lead">Checklist interattiva per i requisiti del Carbon Removal Certification Framework.</p></section>
+  <section class="grid two">
+    <div class="card">
+      <h2>Progresso compliance</h2><div class="bar"><i id="crcfBar" style="width:43%"></i></div><p class="footer-note"><span id="crcfPct">43%</span> completamento requisiti.</p>
+      <div class="check-list" id="checks"></div>
+      <button class="btn" style="margin-top:14px" onclick="alert('Documenti demo generati')">Genera documenti per certificazione</button>
+    </div>
+    <div class="card summary-sticky">
+      <h2>Qualita credito</h2><div class="timeline"><div class="phase"><div class="phase-head"><h3>Real</h3><span class="pill">IoT</span></div><p>Dati suolo real-time come evidenza oggettiva.</p></div><div class="phase"><div class="phase-head"><h3>Verifiable</h3><span class="pill blue">Blockchain</span></div><p>Hash verificabili su Polygon/pOsti.</p></div><div class="phase"><div class="phase-head"><h3>Unique</h3><span class="pill violet">NFT</span></div><p>Ogni credito = 1 token unico, no double counting.</p></div></div>
+    </div>
+  </section>
+</main>
+<script>
+const reqs=['Quantificazione baseline emissioni/rimozioni','Addizionalita dimostrata','Piano di monitoraggio approvato','Metodo di permanenza / buffer pool','Registro pubblico crediti','Revisione indipendente / audit trail','Rapporto di monitoraggio periodico'];
+let states=['completed','completed','completed','in_progress','pending','pending','pending'];
+function render(){document.getElementById('checks').innerHTML=reqs.map((r,i)=>'<label class="check-row"><span>'+(i+1)+'. '+r+'</span><select onchange="states['+i+']=this.value;render()"><option '+sel(i,'pending')+' value="pending">Da fare</option><option '+sel(i,'in_progress')+' value="in_progress">In corso</option><option '+sel(i,'completed')+' value="completed">Completato</option></select></label>').join('');const pct=Math.round(states.filter(s=>s==='completed').length/reqs.length*100);document.getElementById('crcfBar').style.width=pct+'%';document.getElementById('crcfPct').textContent=pct+'%';}
+function sel(i,v){return states[i]===v?'selected':''}render();
+</script>
+</body>
+</html>

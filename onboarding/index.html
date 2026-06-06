@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A-Grid — Onboarding</title>
+  <link rel="stylesheet" href="/assets/mrv.css">
+</head>
+<body>
+<main class="public-shell">
+  <nav class="public-nav">
+    <div class="brand"><div class="logo">AG</div><div><h2>A-GRID</h2><p>Multi-path onboarding</p></div></div>
+    <div class="actions"><a class="btn secondary" href="/calculator/">Calculator</a><a class="btn secondary" href="/">Login</a></div>
+  </nav>
+  <section class="hero-band">
+    <div class="eyebrow">Sprint 1 · F6</div>
+    <h1>Chi sei?</h1>
+    <p class="lead">Tre percorsi distinti per entrare in A-Grid: agricoltore, project developer o corporate buyer.</p>
+  </section>
+  <div class="wizard-tabs">
+    <button class="wizard-tab active" data-path="farmer">Agricoltore</button>
+    <button class="wizard-tab" data-path="developer">Project Developer</button>
+    <button class="wizard-tab" data-path="buyer">Corporate Buyer</button>
+  </div>
+  <section class="card">
+    <div id="pathCopy"></div>
+    <div class="flow" id="pathFlow"></div>
+    <div class="mini-actions"><a class="btn" id="pathCta" href="/app/new-project.html">Inizia ora</a><a class="btn secondary" href="/guide/">Leggi guida</a></div>
+  </section>
+</main>
+<script>
+const paths={
+  farmer:{title:'Percorso agricoltore',cta:'/app/new-project.html',steps:['Registra progetto','Installa sensori','Baseline & verifica','Ricevi crediti']},
+  developer:{title:'Percorso project developer',cta:'/join/',steps:['Registra organizzazione','Invita farmer','Monitora portfolio','Gestisci report']},
+  buyer:{title:'Percorso corporate buyer',cta:'/stakeholder/',steps:['Definisci target ESG','Valuta progetti','Due diligence blockchain','Acquista crediti']}
+};
+function render(path){const p=paths[path];document.getElementById('pathCopy').innerHTML='<h2>'+p.title+'</h2><p class="lead">Flusso visuale a 4 step, ispirato ai migliori programmi carbon farming ma con IoT, satellite e blockchain A-Grid.</p>';document.getElementById('pathFlow').innerHTML=p.steps.map((s,i)=>'<div class="flow-step"><span class="pill">'+(i+1)+'</span><h3>'+s+'</h3><p class="footer-note">Step operativo del percorso '+p.title.toLowerCase()+'.</p></div>').join('');document.getElementById('pathCta').href=p.cta;document.querySelectorAll('.wizard-tab').forEach(b=>b.classList.toggle('active',b.dataset.path===path));}
+document.querySelectorAll('.wizard-tab').forEach(b=>b.onclick=()=>render(b.dataset.path));render('farmer');
+</script>
+</body>
+</html>

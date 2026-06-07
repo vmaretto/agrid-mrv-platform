@@ -198,7 +198,36 @@
     ['Job mock', 'Mock job', 'Job mock', 'مهمة تجريبية'],
     ['Codice organizzazione', 'Organization code', 'Código da organização', 'رمز المؤسسة'],
     ['KPI enterprise', 'Enterprise KPIs', 'KPIs enterprise', 'مؤشرات المؤسسة'],
-    ['Genera codice', 'Generate code', 'Gerar código', 'إنشاء رمز']
+    ['Genera codice', 'Generate code', 'Gerar código', 'إنشاء رمز'],
+    ['Wizard guidato a 6 step per il progetto Vigna Trebotti, con baseline, sensori, evidenze e readiness.', 'Six-step guided wizard for the Vigna Trebotti project, with baseline, sensors, evidence and readiness.', 'Wizard guiado em 6 passos para o projeto Vigna Trebotti, com linha de base, sensores, evidências e prontidão.', 'معالج موجه من 6 خطوات لمشروع Vigna Trebotti، مع خط الأساس والمستشعرات والأدلة والجاهزية.'],
+    ['Command center operativo per tutti i progetti, data hub, evidenze, blockchain e anagrafica farmer.', 'Operations command center for all projects, data hub, evidence, blockchain and farmer registry.', 'Centro de comando operacional para todos os projetos, data hub, evidências, blockchain e cadastro de produtores.', 'مركز عمليات لكل المشاريع، مع مركز بيانات وأدلة وبلوكتشين وسجل للمزارعين.'],
+    ['Dashboard portfolio read-only con KPI aggregati, impatto, progetti e report validati.', 'Read-only portfolio dashboard with aggregate KPIs, impact, projects and validated reports.', 'Dashboard de portfólio somente leitura com KPIs agregados, impacto, projetos e relatórios validados.', 'لوحة محفظة للقراءة فقط تضم مؤشرات مجمعة وأثر ومشاريع وتقارير معتمدة.'],
+    ['Demo routing', 'Demo routing', 'Roteamento demo', 'توجيه تجريبي'],
+    ['Farmer → /farmer/', 'Farmer → /farmer/', 'Produtor → /farmer/', 'المزارع → /farmer/'],
+    ['Admin → /admin/', 'Admin → /admin/', 'Admin → /admin/', 'الإدارة → /admin/'],
+    ['Stakeholder → /stakeholder/', 'Stakeholder → /stakeholder/', 'Stakeholder → /stakeholder/', 'صاحب المصلحة → /stakeholder/'],
+    ['Workflow progetto', 'Project workflow', 'Workflow do projeto', 'سير عمل المشروع'],
+    ['Scenario BAU', 'BAU scenario', 'Cenário BAU', 'سيناريو الأعمال المعتادة'],
+    ['Editor guidato per descrivere la gestione ordinaria senza progetto e validare addizionalità.', 'Guided editor to describe ordinary management without the project and validate additionality.', 'Editor guiado para descrever a gestão ordinária sem projeto e validar adicionalidade.', 'محرر موجه لوصف الإدارة العادية دون المشروع والتحقق من الإضافية.'],
+    ['Mock interattivo', 'Interactive mock', 'Mock interativo', 'نموذج تفاعلي'],
+    ['Hash quando il dato entra in audit trail', 'Hash when the data enters the audit trail', 'Hash quando o dado entra na trilha de auditoria', 'هاش عند دخول البيانات في مسار التدقيق'],
+    ['Salva bozza', 'Save draft', 'Salvar rascunho', 'حفظ المسودة'],
+    ['Importa dato', 'Import data', 'Importar dado', 'استيراد البيانات'],
+    ['Genera hash', 'Generate hash', 'Gerar hash', 'إنشاء هاش'],
+    ['Dettaglio evidenza', 'Evidence detail', 'Detalhe da evidência', 'تفاصيل الدليل'],
+    ['Carica file', 'Upload file', 'Carregar arquivo', 'تحميل ملف'],
+    ['Importa da xFarm', 'Import from xFarm', 'Importar do xFarm', 'استيراد من xFarm'],
+    ['Collega sensore', 'Connect sensor', 'Conectar sensor', 'ربط المستشعر'],
+    ['Gestione convenzionale del vigneto con lavorazione interfilare periodica, residui parzialmente rimossi e copertura vegetale non permanente.', 'Conventional vineyard management with periodic inter-row tillage, partially removed residues and non-permanent vegetation cover.', 'Gestão convencional do vinhedo com manejo periódico entre linhas, resíduos parcialmente removidos e cobertura vegetal não permanente.', 'إدارة تقليدية للكرم مع حراثة دورية بين الصفوف، وإزالة جزئية للمخلفات، وغطاء نباتي غير دائم.'],
+    ['Placeholder API collegata', 'Connected API placeholder', 'Placeholder de API conectado', 'عنصر API تجريبي متصل'],
+    ['visura_catastale_demo.pdf caricato', 'visura_catastale_demo.pdf uploaded', 'visura_catastale_demo.pdf carregado', 'تم تحميل visura_catastale_demo.pdf'],
+    ['Parziale', 'Partial', 'Parcial', 'جزئي'],
+    ['Non ready', 'Not ready', 'Não pronto', 'غير جاهز'],
+    ['Active installation', 'Active installation', 'Instalação ativa', 'تركيب نشط'],
+    ['Anchor created', 'Anchor created', 'Anchor criado', 'تم إنشاء المرساة'],
+    ['Blocked', 'Blocked', 'Bloqueado', 'محجوب'],
+    ['In preparation', 'In preparation', 'Em preparação', 'قيد التحضير'],
+    ['Farmer / Client view', 'Farmer / Client view', 'Vista Produtor / Cliente', 'واجهة المزارع / العميل']
   ];
 
   const phraseRows = [
@@ -259,6 +288,29 @@
     ['Tipi sensore', 'Sensor types', 'Tipos de sensor', 'أنواع المستشعرات'],
     ['Richiedi installazione A-Grid', 'Request A-Grid installation', 'Solicitar instalação A-Grid', 'طلب تركيب A-Grid'],
     ['Accetto termini e condizioni', 'I accept terms and conditions', 'Aceito termos e condições', 'أوافق على الشروط والأحكام'],
+    ['passaggi', 'passes', 'passagens', 'مرات مرور'],
+    ['passaggio', 'pass', 'passagem', 'مرة مرور'],
+    ['Parziale', 'Partial', 'Parcial', 'جزئي'],
+    ['Non ready', 'Not ready', 'Não pronto', 'غير جاهز'],
+    ['Lazio, Italia', 'Lazio, Italy', 'Lazio, Itália', 'لاتسيو، إيطاليا'],
+    ['Italia', 'Italy', 'Itália', 'إيطاليا'],
+    ['Hash', 'Hash', 'Hash', 'هاش'],
+    ['timestamp', 'timestamp', 'timestamp', 'طابع زمني'],
+    ['caricato', 'uploaded', 'carregado', 'تم التحميل'],
+    ['Fonte xFarm', 'xFarm source', 'Fonte xFarm', 'مصدر xFarm'],
+    ['SOC iniziale', 'Initial SOC', 'SOC inicial', 'SOC الأولي'],
+    ['Sangiovese', 'Sangiovese', 'Sangiovese', 'سانجيوفيزي'],
+    ['copper + sulfur', 'copper + sulfur', 'cobre + enxofre', 'نحاس + كبريت'],
+    ['medium inputs', 'medium inputs', 'insumos médios', 'مدخلات متوسطة'],
+    ['reduced', 'reduced', 'reduzidos', 'مخفضة'],
+    ['drip', 'drip', 'gotejamento', 'تنقيط'],
+    ['Project identity', 'Project identity', 'Identidade do projeto', 'هوية المشروع'],
+    ['Sensors and data', 'Sensors and data', 'Sensores e dados', 'المستشعرات والبيانات'],
+    ['Blockchain credit', 'Blockchain credit', 'Crédito blockchain', 'رصيد البلوكتشين'],
+    ['global completion', 'global completion', 'conclusão global', 'إكمال عام'],
+    ['demo wine farm', 'demo wine farm', 'empresa vitivinícola demo', 'مزرعة كروم تجريبية'],
+    ['Sangiovese vineyard', 'Sangiovese vineyard', 'vinhedo Sangiovese', 'كرم سانجيوفيزي'],
+    ['partial baseline', 'partial baseline', 'linha de base parcial', 'خط أساس جزئي'],
     ['Nome organizzazione', 'Organization name', 'Nome da organização', 'اسم المؤسسة'],
     ['Note', 'Notes', 'Notas', 'ملاحظات'],
     ['Email', 'Email', 'Email', 'البريد الإلكتروني'],
@@ -283,7 +335,8 @@
 
   const baseTexts = new WeakMap();
   const baseAttrs = new WeakMap();
-  const skipTags = new Set(['SCRIPT', 'STYLE', 'CODE', 'PRE', 'NOSCRIPT']);
+  const baseValues = new WeakMap();
+  const skipTags = new Set(['SCRIPT', 'STYLE', 'CODE', 'PRE', 'NOSCRIPT', 'SELECT', 'OPTION']);
   let translating = false;
   let observer;
 
@@ -345,6 +398,17 @@
     });
   }
 
+  function translateFormValues(root, lang) {
+    root.querySelectorAll('input, textarea').forEach(el => {
+      if (el.type && ['checkbox', 'radio', 'range', 'number', 'hidden'].includes(el.type)) return;
+      if (document.activeElement === el) return;
+      if (!baseValues.has(el)) baseValues.set(el, el.value);
+      const original = baseValues.get(el);
+      const next = translateString(original, lang);
+      if (el.value !== next) el.value = next;
+    });
+  }
+
   function translate(lang) {
     const meta = languages[lang] || languages.it;
     translating = true;
@@ -360,6 +424,7 @@
       if (node.nodeValue !== next) node.nodeValue = next;
     });
     translateAttributes(document.body, lang);
+    translateFormValues(document.body, lang);
     translating = false;
   }
 

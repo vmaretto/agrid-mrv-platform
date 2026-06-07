@@ -1,6 +1,8 @@
 <!doctype html>
 <html lang="it">
-<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>A-Grid — Accessi condivisi</title><link rel="stylesheet" href="/assets/mrv.css"></head>
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>A-Grid — Accessi condivisi</title><link rel="stylesheet" href="/assets/mrv.css">  <script type="module" src="/assets/i18n.js"></script>
+  <script type="module" src="/assets/app-shell.js"></script>
+</head>
 <body><main class="public-shell"><nav class="public-nav"><div class="brand"><div class="logo">AG</div><div><h2>A-GRID</h2><p>Cartelle condivise</p></div></div><a class="btn secondary" href="/farmer/">Farmer</a></nav>
 <section class="hero-band"><div class="eyebrow">Sprint 2 · F12</div><h1>Accesso delegato al progetto</h1><p class="lead">Condividi il progetto con agronomo, consulente o verificatore.</p></section>
 <section class="grid two"><div class="card"><h2>Invita utente</h2><div class="fields"><div class="field"><label>Email</label><input id="email" value="agronomo@example.com"></div><div class="field"><label>Ruolo</label><select id="role"><option>viewer</option><option>editor</option></select></div></div><button class="btn" style="margin-top:12px" onclick="invite()">Invita</button></div><div class="card"><h2>Accessi attivi</h2><div id="shares" class="timeline"></div></div></section>

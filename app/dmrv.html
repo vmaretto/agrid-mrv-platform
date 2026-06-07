@@ -1,5 +1,7 @@
 <!doctype html>
-<html lang="it"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>A-Grid — dMRV Satellite</title><link rel="stylesheet" href="/assets/mrv.css"></head>
+<html lang="it"><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>A-Grid — dMRV Satellite</title><link rel="stylesheet" href="/assets/mrv.css">  <script type="module" src="/assets/i18n.js"></script>
+  <script type="module" src="/assets/app-shell.js"></script>
+</head>
 <body><main class="public-shell"><nav class="public-nav"><div class="brand"><div class="logo">AG</div><div><h2>A-GRID</h2><p>dMRV satellite</p></div></div><a class="btn secondary" href="/app/map.html">Mappa</a></nav>
 <section class="hero-band"><div class="eyebrow">Sprint 4 · F8</div><h1>dMRV automatizzato Sentinel-2</h1><p class="lead">NDVI ogni 5 giorni, land use change e cross-validazione con IoT.</p></section>
 <section class="grid two"><div class="card"><h2>I 4 approcci A-Grid</h2><div class="timeline"><div class="phase"><h3>DSM</h3><p>Digital soil mapping da Layer 1.</p></div><div class="phase"><h3>DSM + BGCM</h3><p>Modelli calibrati con dati IoT.</p></div><div class="phase"><h3>Measure/Remeasure</h3><p>Campionamento fisico annuale.</p></div><div class="phase"><h3>IoT continuo</h3><p>Dati real-time ogni 15 minuti.</p></div></div></div><div class="card"><h2>Job mock</h2><p class="lead">Ultimo sync Sentinel-2: 06/06/2026. Alert se NDVI cala oltre 20%.</p><button class="btn" onclick="alert('Analisi satellitare demo avviata')">Trigger dMRV</button></div></section>

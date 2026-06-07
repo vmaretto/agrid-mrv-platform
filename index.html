@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>A-Grid MRV Platform — Login</title>
   <link rel="stylesheet" href="/assets/mrv.css">
+  <script type="module" src="/assets/i18n.js"></script>
+  <script type="module" src="/assets/app-shell.js"></script>
 </head>
 <body>
 <main class="login-shell">
@@ -40,8 +42,9 @@ const copy={
   admin:{title:'Vista Interna A-Grid',body:'Command center operativo per tutti i progetti, data hub, evidenze, blockchain e anagrafica farmer.'},
   stakeholder:{title:'Vista Stakeholder',body:'Dashboard portfolio read-only con KPI aggregati, impatto, progetti e report validati.'}
 };
-function render(){const c=copy[role.value];preview.innerHTML='<div><b>'+c.title+'</b><p class="footer-note">'+c.body+'</p></div>';}
+function render(){const c=copy[role.value];preview.innerHTML='<div><b>'+c.title+'</b><p class="footer-note">'+c.body+'</p></div>';if(window.AGridI18n)window.AGridI18n.translate(window.AGridI18n.getLang());}
 role.addEventListener('change',render);
+document.addEventListener('agrid:lang',render);
 enter.addEventListener('click',()=>{location.href='/' + role.value + '/';});
 render();
 </script>
